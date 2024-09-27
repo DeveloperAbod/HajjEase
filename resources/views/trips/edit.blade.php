@@ -122,7 +122,7 @@
 
                                                     <div class="col-md-12">
                                                         <div class="form-group">
-                                                            <h5>تم الانشاء من قبل</h5>
+                                                            <h5>تم الانشاء بواسطة</h5>
                                                             <div class="controls">
                                                                 <input type="text"
                                                                     value="{{ $trip->creator ? $trip->creator->name : 'غير متوفر' }}"

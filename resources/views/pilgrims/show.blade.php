@@ -69,8 +69,12 @@
                                                     <td>{{ $pilgrim->created_at->format('Y-m-d H:i:s') }}</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>تم الانشاء من قبل:</td>
-                                                    <td>{{ $pilgrim->creator ? $pilgrim->creator->id : '' }}-{{ $pilgrim->creator ? $pilgrim->creator->name : 'غير متوفر' }}
+                                                    <td>تم الانشاء بواسطة:</td>
+                                                    <td>
+                                                        <a
+                                                            href="{{ route('users.show', $pilgrim->creator ? $pilgrim->creator->id : '') }}">
+                                                            {{ $pilgrim->creator ? $pilgrim->creator->id : '' }}-{{ $pilgrim->creator ? $pilgrim->creator->name : 'غير متوفر' }}
+                                                        </a>
                                                     </td>
                                                 </tr>
                                             </tbody>

@@ -65,8 +65,13 @@
                                                     <td>{{ $trip->created_at->format('Y-m-d H:i:s') }}</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>تم الانشاء من قبل:</td>
-                                                    <td>{{ $trip->creator ? $trip->creator->id : '' }}-{{ $trip->creator ? $trip->creator->name : 'غير متوفر' }}
+                                                    <td>تم الانشاء بواسطة:</td>
+
+                                                    <td>
+                                                        <a
+                                                            href="{{ route('users.show', $trip->creator ? $trip->creator->id : '') }}">
+                                                            {{ $trip->creator ? $trip->creator->id : '' }}-{{ $trip->creator ? $trip->creator->name : 'غير متوفر' }}
+                                                        </a>
                                                     </td>
                                                 </tr>
                                             </tbody>

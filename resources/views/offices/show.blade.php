@@ -67,7 +67,7 @@
                                                     <td>{{ $office->created_at->format('Y-m-d H:i:s') }}</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>تم الانشاء من قبل:</td>
+                                                    <td>تم الانشاء بواسطة:</td>
                                                     <td>{{ $office->creator ? $office->creator->id : '' }}-{{ $office->creator ? $office->creator->name : 'غير متوفر' }}
                                                     </td>
                                                 </tr>

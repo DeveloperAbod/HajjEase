@@ -8,8 +8,8 @@
 @endsection
 
 @section('page_meta')
-    <meta name="description" content="عرض تفاصيل الرحلة" />
-    <title>لوحة تحكم مكاتب الحج والعمرة | عرض تفاصيل الرحلة</title>
+    <meta name="description" content="عرض تفاصيل المكتب" />
+    <title>لوحة تحكم مكاتب الحج والعمرة | عرض تفاصيل المكتب</title>
 @endsection
 
 @section('content')
@@ -19,20 +19,20 @@
         <div class="content-wrapper">
             <div class="content-header row">
                 <div class="content-header-left col-md-6 col-12 mb-2">
-                    <h3 class="content-header-title">عرض تفاصيل الرحلة</h3>
+                    <h3 class="content-header-title">عرض تفاصيل المكتب</h3>
                     <div class="row breadcrumbs-top">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{ route('home') }}">الصفحة الرئيسية</a></li>
-                                <li class="breadcrumb-item active"><a href="{{ route('trips') }}">الرحلات</a></li>
-                                <li class="breadcrumb-item active">عرض تفاصيل الرحلة</li>
+                                <li class="breadcrumb-item active"><a href="{{ route('offices') }}">المكاتب</a></li>
+                                <li class="breadcrumb-item active">عرض تفاصيل المكتب</li>
                             </ol>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="content-body">
-                <section class="trip-view">
+                <section class="office-view">
                     <div class="card">
                         <div class="card-content">
                             <div class="card-body">
@@ -41,42 +41,44 @@
                                         <table class="table table-borderless">
                                             <tbody>
                                                 <tr>
-                                                    <td>رقم الرحلة:</td>
-                                                    <td>{{ $trip->id }}</td>
+                                                    <td>اسم المكتب:</td>
+                                                    <td>{{ $office->name }}</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>اسم الرحلة:</td>
-                                                    <td>{{ $trip->name }}</td>
+                                                    <td>الموقع:</td>
+                                                    <td>{{ $office->location }}</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>تاريخ الرحلة:</td>
-                                                    <td>{{ $trip->date }}</td>
+                                                    <td>رقم الهاتف:</td>
+                                                    <td>{{ $office->phone }}</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>سعر الرحلة:</td>
-                                                    <td>{{ $trip->price }} ريال</td>
+                                                    <td>اسم مسؤول الاتصال:</td>
+                                                    <td>{{ $office->contact_person }}</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>عدد المقاعد المتاحة:</td>
-                                                    <td>{{ $trip->available_seats }}</td>
+                                                    <td>رابط الخريطة:</td>
+                                                    <td><a href="{{ $office->map_url ? $office->map_url : '' }}"
+                                                            target="_blank">{{ $office->map_url ? $office->map_url : 'لايوجد' }}</a>
+                                                    </td>
                                                 </tr>
                                                 <tr>
-                                                    <td>تاريخ انشاء الرحلة:</td>
-                                                    <td>{{ $trip->created_at->format('Y-m-d H:i:s') }}</td>
+                                                    <td>تاريخ انشاء المكتب:</td>
+                                                    <td>{{ $office->created_at->format('Y-m-d H:i:s') }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>تم الانشاء من قبل:</td>
-                                                    <td>{{ $trip->creator ? $trip->creator->id : '' }}-{{ $trip->creator ? $trip->creator->name : 'غير متوفر' }}
+                                                    <td>{{ $office->creator ? $office->creator->id : '' }}-{{ $office->creator ? $office->creator->name : 'غير متوفر' }}
                                                     </td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
-                                @can('تعديل رحلة')
+                                @can('تعديل المكتب')
                                     <div class="form-actions">
-                                        <a href="{{ route('trips.edit', $trip->id) }}" class="btn btn-sm btn-primary">تعديل
-                                            الرحلة</a>
+                                        <a href="{{ route('offices.edit', $office->id) }}" class="btn btn-sm btn-primary">تعديل
+                                            المكتب</a>
                                     </div>
                                 @endcan
                             </div>

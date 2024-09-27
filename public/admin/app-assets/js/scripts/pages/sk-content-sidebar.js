@@ -2,7 +2,7 @@
     File Name: content-sidebar.js
     Description: Invoices list datables configurations
     ----------------------------------------------------------------------------------------
-    Item Name: Modern Admin - Clean Bootstrap 4 Dashboard HTML Template
+     
     Author: Abod
      
 ==========================================================================================*/

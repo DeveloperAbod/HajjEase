@@ -2,7 +2,7 @@
     File Name: line.js
     Description: D3 simple line chart
     ----------------------------------------------------------------------------------------
-    Item Name: Modern Admin - Clean Bootstrap 4 Dashboard HTML Template
+     
     Author: Abod
 
 ==========================================================================================*/

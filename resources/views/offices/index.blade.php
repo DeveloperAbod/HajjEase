@@ -10,29 +10,22 @@
 @endsection
 
 @section('page_meta')
-    <meta name="description" content="مكاتب الحج والعمرة" />
-
-
-    <title>
-        لوحة تحكم مكاتب الحج والعمرة | جميع الرحلات
-    </title>
+    <meta name="description" content="قائمة المكاتب" />
+    <title>لوحة تحكم المكاتب | جميع المكاتب</title>
 @endsection
 
-
-
 @section('content')
-    <!-- BEGIN: Content-->
     <div class="app-content content">
         <div class="content-overlay"></div>
         <div class="content-wrapper">
             <div class="content-header row">
                 <div class="content-header-left col-md-6 col-12 mb-2">
-                    <h3 class="content-header-title">الرحلات</h3>
+                    <h3 class="content-header-title">المكاتب</h3>
                     <div class="row breadcrumbs-top">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ Route('home') }}">الصفحة الرئيسية</a></li>
-                                <li class="breadcrumb-item active">جميع الرحلات</li>
+                                <li class="breadcrumb-item"><a href="{{ route('home') }}">الصفحة الرئيسية</a></li>
+                                <li class="breadcrumb-item active">جميع المكاتب</li>
                             </ol>
                         </div>
                     </div>
@@ -40,30 +33,29 @@
 
                 <div class="content-header-right col-md-6 col-12">
                     <div class="btn-group float-md-right" role="group" aria-label="Button group with nested dropdown">
-                        <a href="{{ Route('trips.create') }}" class="btn btn-info round  box-shadow-2 px-2 mb-1"><i
-                                class="ft-plus-circle icon-left"></i> اضافة رحلة جديد</a>
+                        <a href="{{ route('offices.create') }}" class="btn btn-info round box-shadow-2 px-2 mb-1">
+                            <i class="ft-plus-circle icon-left"></i> إضافة مكتب جديد
+                        </a>
                     </div>
                 </div>
-
             </div>
+
             <div class="content-body">
                 <section id="configuration">
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">جميع الرحلات</h4>
+                                    <h4 class="card-title">جميع المكاتب</h4>
                                     <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
                                         <ul class="list-inline mb-0">
                                             <li>
                                                 <a data-action="collapse"><i class="ft-minus"></i></a>
                                             </li>
-
                                             <li>
                                                 <a data-action="expand"><i class="ft-maximize"></i></a>
                                             </li>
-
                                         </ul>
                                     </div>
                                 </div>
@@ -73,68 +65,63 @@
                                             <table class="table table-striped table-bordered dataex-visibility-selector">
                                                 <thead>
                                                     <tr>
-                                                        <th>رقم الرحلة</th>
-                                                        <th>اسم الرحلة</th>
-                                                        <th>السعر</th>
-                                                        <th>المقاعد المتاحة</th>
-                                                        <th>تم الانشاء من قبل</th>
+                                                        <th>رقم المكتب</th>
+                                                        <th>اسم المكتب</th>
+                                                        <th>الموقع</th>
+                                                        <th>رقم الهاتف</th>
+                                                        <th>شخص الاتصال</th>
+                                                        <th>تم الانشاء بواسطة</th>
                                                         <th>العمليات</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach ($trips as $item)
+                                                    @foreach ($offices as $office)
                                                         <tr>
-
-                                                            <td>{{ $item->id }}</td>
-                                                            <td>{{ $item->name }}</td>
-                                                            <td>{{ $item->price }}</td>
-                                                            <td>{{ $item->available_seats }}</td>
+                                                            <td>{{ $office->id }}</td>
+                                                            <td>{{ $office->name }}</td>
+                                                            <td>{{ $office->location }}</td>
+                                                            <td>{{ $office->phone }}</td>
+                                                            <td>{{ $office->contact_person }}</td>
                                                             <td>
-                                                                @if ($item->creator)
-                                                                    <a href="{{ route('users.show', $item->creator->id) }}">
-                                                                        {{ $item->creator->id }}-{{ $item->creator->name }}
+                                                                @if ($office->creator)
+                                                                    <a
+                                                                        href="{{ route('users.show', $office->creator->id) }}">
+                                                                        {{ $office->creator->id }} -
+                                                                        {{ $office->creator->name }}
                                                                     </a>
                                                                 @else
                                                                     غير متوفر
                                                                 @endif
-
                                                             </td>
-
                                                             <td>
                                                                 <div class="btn-group">
                                                                     <button type="button"
                                                                         class="btn btn-sm btn-info dropdown-toggle mr-1"
                                                                         data-toggle="dropdown" aria-haspopup="true"
                                                                         aria-expanded="false">
-                                                                        عرض اكثر
+                                                                        عرض المزيد
                                                                     </button>
-                                                                    <div class="dropdown-menu" x-placement="bottom-start"
-                                                                        style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(14px, 41px, 0px);">
+                                                                    <div class="dropdown-menu">
                                                                         <a class="dropdown-item"
-                                                                            href="{{ Route('trips.show', $item->id) }}">عرض</a>
-
+                                                                            href="{{ route('offices.show', $office->id) }}">عرض</a>
                                                                         <a class="dropdown-item"
-                                                                            href="{{ Route('trips.edit', $item->id) }}">تعديل</a>
-
-
-                                                                        <button class="dropdown-item delete_trip_btn"
-                                                                            value="{{ $item->id }}">حذف</button>
-
+                                                                            href="{{ route('offices.edit', $office->id) }}">تعديل</a>
+                                                                        <button class="dropdown-item delete_office_btn"
+                                                                            value="{{ $office->id }}">حذف</button>
                                                                     </div>
                                                                 </div>
                                                             </td>
-
-
                                                         </tr>
                                                     @endforeach
                                                 </tbody>
                                                 <tfoot>
                                                     <tr>
-                                                        <th>رقم الرحلة</th>
-                                                        <th>اسم الرحلة</th>
-                                                        <th>السعر</th>
-                                                        <th>المقاعد المتاحة</th>
-                                                        <th>تم الانشاء من قبل</th>
+                                                        <th>رقم المكتب</th>
+                                                        <th>اسم المكتب</th>
+                                                        <th>الموقع</th>
+                                                        <th>رقم الهاتف</th>
+                                                        <th>شخص الاتصال</th>
+                                                        <th>تم الانشاء بواسطة</th>
                                                         <th>العمليات</th>
                                                     </tr>
                                                 </tfoot>
@@ -146,8 +133,6 @@
                         </div>
                     </div>
                 </section>
-                <!--/ Zero configuration table -->
-
             </div>
         </div>
     </div>
@@ -166,7 +151,6 @@
     <!-- END: Page Vendor JS-->
 @endsection
 
-
 @section('page_js')
     <!-- BEGIN: Page JS-->
     <script src="/admin/app-assets/js/scripts/tables/datatables/datatable-basic.min.js"></script>
@@ -175,11 +159,11 @@
     </script>
     {{-- end print tables --}}
     <script>
-        $(document).on('click', '.delete_trip_btn', function(e) {
+        $(document).on('click', '.delete_office_btn', function(e) {
             e.preventDefault();
             var id = $(this).val();
             Swal.fire({
-                title: 'هل انت متأكد',
+                title: 'هل أنت متأكد؟',
                 text: "لن تستطيع استرجاع هذا السجل",
                 icon: 'warning',
                 showCancelButton: true,
@@ -189,9 +173,7 @@
                 confirmButtonText: 'نعم'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    // Construct the URL with parameters
-                    var url = "{{ route('trips.delete', ':id') }}".replace(':id', id);
-                    // Create a hidden form to submit the request
+                    var url = "{{ route('offices.delete', ':id') }}".replace(':id', id);
                     var form = $('<form>', {
                         'action': url,
                         'method': 'POST',
@@ -208,17 +190,10 @@
                             'value': 'DELETE'
                         })
                     );
-                    // Append the form to the body and submit it
                     $('body').append(form);
                     form.submit();
                 }
             });
         });
     </script>
-
-
-
-
-
-    <!-- END: Page JS-->
 @endsection

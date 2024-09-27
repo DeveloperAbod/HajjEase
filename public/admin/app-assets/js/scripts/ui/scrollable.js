@@ -2,7 +2,7 @@
 	File Name: scrollable.js
 	Description: scrollabr intialisations
 	----------------------------------------------------------------------------------------
-	Item Name: Modern Admin - Clean Bootstrap 4 Dashboard HTML Template
+	 
 	Author: Abod
 	Author URL: hhttp://www.themeforest.net/user/Abod
 ==========================================================================================*/

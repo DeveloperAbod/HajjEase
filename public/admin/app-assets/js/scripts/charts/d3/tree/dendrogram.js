@@ -2,7 +2,7 @@
     File Name: dendrogram.js
     Description: D3 cluster dendrogram tree chart
     ----------------------------------------------------------------------------------------
-    Item Name: Modern Admin - Clean Bootstrap 4 Dashboard HTML Template
+     
     Author: Abod
 
 ==========================================================================================*/

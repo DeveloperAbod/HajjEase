@@ -14,7 +14,7 @@
 
 
     <title>
-        لوحة تحكم مكاتب الحج والعمرة | جميع الرحلات
+        لوحة تحكم مكاتب الحج والعمرة | جميع الحجاج
     </title>
 @endsection
 
@@ -27,12 +27,12 @@
         <div class="content-wrapper">
             <div class="content-header row">
                 <div class="content-header-left col-md-6 col-12 mb-2">
-                    <h3 class="content-header-title">الرحلات</h3>
+                    <h3 class="content-header-title">الحجاج</h3>
                     <div class="row breadcrumbs-top">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{ Route('home') }}">الصفحة الرئيسية</a></li>
-                                <li class="breadcrumb-item active">جميع الرحلات</li>
+                                <li class="breadcrumb-item active">جميع الحجاج</li>
                             </ol>
                         </div>
                     </div>
@@ -40,8 +40,8 @@
 
                 <div class="content-header-right col-md-6 col-12">
                     <div class="btn-group float-md-right" role="group" aria-label="Button group with nested dropdown">
-                        <a href="{{ Route('trips.create') }}" class="btn btn-info round  box-shadow-2 px-2 mb-1"><i
-                                class="ft-plus-circle icon-left"></i> اضافة رحلة جديد</a>
+                        <a href="{{ Route('pilgrims.create') }}" class="btn btn-info round  box-shadow-2 px-2 mb-1"><i
+                                class="ft-plus-circle icon-left"></i> اضافة حاج جديد</a>
                     </div>
                 </div>
 
@@ -52,7 +52,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">جميع الرحلات</h4>
+                                    <h4 class="card-title">جميع الحجاج</h4>
                                     <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
                                         <ul class="list-inline mb-0">
@@ -73,22 +73,24 @@
                                             <table class="table table-striped table-bordered dataex-visibility-selector">
                                                 <thead>
                                                     <tr>
-                                                        <th>رقم الرحلة</th>
-                                                        <th>اسم الرحلة</th>
-                                                        <th>السعر</th>
-                                                        <th>المقاعد المتاحة</th>
+                                                        <th>رقم الحاج</th>
+                                                        <th>اسم الحاج</th>
+                                                        <th>رقم الهوية</th>
+                                                        <th>نوع الهوية</th>
+                                                        <th>رقم الهاتف</th>
                                                         <th>تم الانشاء من قبل</th>
                                                         <th>العمليات</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach ($trips as $item)
+                                                    @foreach ($pilgrims as $item)
                                                         <tr>
 
                                                             <td>{{ $item->id }}</td>
                                                             <td>{{ $item->name }}</td>
-                                                            <td>{{ $item->price }}</td>
-                                                            <td>{{ $item->available_seats }}</td>
+                                                            <td>{{ $item->identity_number }}</td>
+                                                            <td>{{ $item->identity_type->label() }}</td>
+                                                            <td>{{ $item->phone }}</td>
                                                             <td>
                                                                 @if ($item->creator)
                                                                     <a href="{{ route('users.show', $item->creator->id) }}">
@@ -111,13 +113,13 @@
                                                                     <div class="dropdown-menu" x-placement="bottom-start"
                                                                         style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(14px, 41px, 0px);">
                                                                         <a class="dropdown-item"
-                                                                            href="{{ Route('trips.show', $item->id) }}">عرض</a>
+                                                                            href="{{ Route('pilgrims.show', $item->id) }}">عرض</a>
 
                                                                         <a class="dropdown-item"
-                                                                            href="{{ Route('trips.edit', $item->id) }}">تعديل</a>
+                                                                            href="{{ Route('pilgrims.edit', $item->id) }}">تعديل</a>
 
 
-                                                                        <button class="dropdown-item delete_trip_btn"
+                                                                        <button class="dropdown-item delete_pilgrim_btn"
                                                                             value="{{ $item->id }}">حذف</button>
 
                                                                     </div>
@@ -130,10 +132,11 @@
                                                 </tbody>
                                                 <tfoot>
                                                     <tr>
-                                                        <th>رقم الرحلة</th>
-                                                        <th>اسم الرحلة</th>
-                                                        <th>السعر</th>
-                                                        <th>المقاعد المتاحة</th>
+                                                        <th>رقم الحاج</th>
+                                                        <th>اسم الحاج</th>
+                                                        <th>رقم الهوية</th>
+                                                        <th>نوع الهوية</th>
+                                                        <th>رقم الهاتف</th>
                                                         <th>تم الانشاء من قبل</th>
                                                         <th>العمليات</th>
                                                     </tr>
@@ -146,7 +149,7 @@
                         </div>
                     </div>
                 </section>
-                <!--/ Zero configuration table -->
+
 
             </div>
         </div>
@@ -175,7 +178,7 @@
     </script>
     {{-- end print tables --}}
     <script>
-        $(document).on('click', '.delete_trip_btn', function(e) {
+        $(document).on('click', '.delete_pilgrim_btn', function(e) {
             e.preventDefault();
             var id = $(this).val();
             Swal.fire({
@@ -190,7 +193,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     // Construct the URL with parameters
-                    var url = "{{ route('trips.delete', ':id') }}".replace(':id', id);
+                    var url = "{{ route('pilgrims.delete', ':id') }}".replace(':id', id);
                     // Create a hidden form to submit the request
                     var form = $('<form>', {
                         'action': url,

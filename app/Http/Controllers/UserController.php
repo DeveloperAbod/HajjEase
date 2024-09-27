@@ -55,7 +55,7 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
             'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
-            'phone' => ['numeric', 'digits:9', 'required', 'unique:users,phone'],
+            'phone' => ['numeric', 'regex:/^7\d{8}$/', 'digits:9', 'required', 'unique:users,phone'],
             'password' => 'required|min:8|same:confirm-password',
 
             'roles_name' => 'required',
@@ -103,7 +103,7 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users,email,' . $id,
             'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
-            'phone' => 'numeric|digits:9|required|unique:users,phone,' . $id,
+            'phone' => 'numeric|digits:9|regex:/^7\d{8}$/|required|unique:users,phone,' . $id,
             'password' => 'nullable|min:8|same:confirm-password',
             'roles_name' => 'required'
         ]);

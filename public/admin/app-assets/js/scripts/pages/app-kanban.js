@@ -2,7 +2,7 @@
     File Name: kanban.js
     Description: kanban plugin
     ----------------------------------------------------------------------------------------
-    Item Name: Modern Admin - Clean Bootstrap 4 Dashboard HTML Template
+     
     Author: Abod
 
 ==========================================================================================*/

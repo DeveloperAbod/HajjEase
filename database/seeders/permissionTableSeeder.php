@@ -23,8 +23,6 @@ class permissionTableSeeder extends Seeder
             'تعديل صلاحية',
             'حذف صلاحية',
 
-
-
         ];
         foreach ($permissions as $permission) {
             Permission::create(['name' => $permission]);

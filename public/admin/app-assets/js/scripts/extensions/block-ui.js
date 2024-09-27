@@ -2,7 +2,7 @@
     File Name: block-ui.js
     Description: Block UI jQuery Plugin Intialization
     --------------------------------------------------------------------------------------
-    Item Name: Modern Admin - Clean Bootstrap 4 Dashboard HTML Template
+     
     Author: Abod
      
 ==========================================================================================*/

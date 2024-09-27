@@ -2,7 +2,7 @@
     File Name: line-tension.js
     Description: D3 line tension chart
     ----------------------------------------------------------------------------------------
-    Item Name: Modern Admin - Clean Bootstrap 4 Dashboard HTML Template
+     
     Author: Abod
 
 ==========================================================================================*/

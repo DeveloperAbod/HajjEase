@@ -6,6 +6,10 @@
     <link rel="stylesheet" type="text/css" href="/admin/app-assets/css-rtl/core/menu/menu-types/vertical-menu.min.css" />
     <link rel="stylesheet" type="text/css" href="/admin/app-assets/css-rtl/core/colors/palette-gradient.min.css" />
     <link rel="stylesheet" type="text/css" href="/admin/app-assets/css-rtl/plugins/forms/validation/form-validation.css" />
+    {{-- select 2 --}}
+    <link rel="stylesheet" type="text/css" href="/admin/app-assets/vendors/css/forms/selects/select2.min.css" />
+
+
     <!-- END: Page CSS-->
 @endsection
 
@@ -81,11 +85,10 @@
                                                                 <span class="required">*</span>اسم المستخدم
                                                             </h5>
                                                             <div class="controls">
-                                                                <input type="text" name="name"
+                                                                <input type="text" name="name" required
                                                                     value="{{ old('name') }}" class="form-control mb-1"
                                                                     placeholder="ادخل اسم المستخدم"
-                                                                    data-validation-required-message="لا يمكن ان يكون اسم المستخدم فارغاً"
-                                                                    aria-invalid="false">
+                                                                    data-validation-required-message="لا يمكن ان يكون اسم المستخدم فارغاً">
                                                                 <div class="help-block">
                                                                 </div>
                                                                 @error('name')
@@ -104,11 +107,10 @@
                                                                 <span class="required">*</span>البريد الالكتروني
                                                             </h5>
                                                             <div class="controls">
-                                                                <input type="email" name="email"
+                                                                <input type="email" name="email" required
                                                                     value="{{ old('email') }}" class="form-control mb-1"
                                                                     placeholder="ادخل البريد الالكتروني"
-                                                                    data-validation-required-message="لا يمكن ان يكون البريد الالكتروني فارغاً"
-                                                                    aria-invalid="false">
+                                                                    data-validation-required-message="لا يمكن ان يكون البريد الالكتروني فارغاً">
                                                                 <div class="help-block">
                                                                 </div>
                                                                 @error('email')
@@ -127,8 +129,7 @@
                                                             <div class="controls">
                                                                 <input type="password" name="password" required
                                                                     class="form-control mb-1" placeholder="ادخل كلمة المرور"
-                                                                    data-validation-required-message="لا يمكن ان يكون كلمة المرور فارغاً"
-                                                                    aria-invalid="false">
+                                                                    data-validation-required-message="لا يمكن ان يكون كلمة المرور فارغاً">
                                                                 <div class="help-block">
                                                                 </div>
                                                                 @error('password')
@@ -144,11 +145,10 @@
                                                                 <span class="required">*</span>تاكيد كلمة المرور
                                                             </h5>
                                                             <div class="controls">
-                                                                <input type="password" name="confirm-password"
+                                                                <input type="password" name="confirm-password" required
                                                                     class="form-control mb-1"
                                                                     placeholder="تاكيد كلمة المرور"
-                                                                    data-validation-match-match="password"
-                                                                    aria-invalid="false">
+                                                                    data-validation-match-match="password">
                                                                 <div class="help-block">
                                                                 </div>
                                                                 @error('confirm-password')
@@ -176,14 +176,14 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <h5>
-                                                                <span class="required">*</span>رقم هاتف المستخدم
+                                                                <span class="required">*</span>رقم هاتف المستخدم (رقم يمني)
                                                             </h5>
                                                             <div class="controls">
-                                                                <input type="text" name="phone"
+                                                                <input type="text" name="phone" required
                                                                     value="{{ old('phone') }}" class="form-control mb-1"
+                                                                    minlength="9" maxlength="9"
                                                                     placeholder="ادخل رقم هاتف المستخدم"
-                                                                    data-validation-required-message="لا يمكن ان يكون رقم هاتف المستخدم فارغة"
-                                                                    aria-invalid="false">
+                                                                    data-validation-required-message="لا يمكن ان يكون رقم هاتف المستخدم فارغة">
                                                                 <div class="help-block">
                                                                 </div>
                                                                 @error('phone')
@@ -201,8 +201,10 @@
                                                                     اكثر من صلاحية</small>
                                                             </h5>
                                                             <div class="controls">
-                                                                <select style="height: 300px;" name="roles_name[]"
-                                                                    class="form-control mb-1" multiple>
+                                                                <select required
+                                                                    data-validation-required-message="لا يمكن ان يكون حقل الصلاحيات فارغاً"
+                                                                    name="roles_name[]"
+                                                                    class="select2-roles form-control mb-1" multiple>
                                                                     @foreach ($roles as $roleKey => $roleValue)
                                                                         <option value="{{ $roleKey }}">
                                                                             {{ $roleValue }}</option>
@@ -271,7 +273,8 @@
     <script src="/admin/app-assets/vendors/js/forms/icheck/icheck.min.js"></script>
     <script src="/admin/app-assets/vendors/js/forms/toggle/bootstrap-switch.min.js"></script>
     <script src="/admin/app-assets/vendors/js/forms/toggle/switchery.min.js"></script>
-
+    {{-- select 2 --}}
+    <script src="/admin/app-assets/vendors/js/forms/select/select2.full.min.js"></script>
 
     <!-- END: Page Vendor JS-->
 @endsection
@@ -280,5 +283,6 @@
 @section('page_js')
     <!-- BEGIN: Page JS-->
     <script src="/admin/app-assets/js/scripts/forms/validation/form-validation.js"></script>
+    <script src="/admin/app-assets/js/scripts/forms/select/form-select2.min.js"></script>
     <!-- END: Page JS-->
 @endsection

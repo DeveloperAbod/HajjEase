@@ -2,7 +2,7 @@
     File Name: medical-venn.js
     Description: D3 medical venn diagram
     ----------------------------------------------------------------------------------------
-    Item Name: Modern Admin - Clean Bootstrap 4 Dashboard HTML Template
+     
     Author: Abod
      
 ==========================================================================================*/

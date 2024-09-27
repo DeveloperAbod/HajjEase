@@ -82,11 +82,10 @@
                                                                 <span class="required">*</span>اسم الصلاحية
                                                             </h5>
                                                             <div class="controls">
-                                                                <input type="text" name="name"
+                                                                <input type="text" name="name" required
                                                                     value="{{ old('name') }}" class="form-control mb-1"
                                                                     placeholder="ادخل اسم الصلاحية"
-                                                                    data-validation-required-message="لا يمكن ان يكون اسم الصلاحية فارغاً"
-                                                                    aria-invalid="false">
+                                                                    data-validation-required-message="لا يمكن ان يكون اسم الصلاحية فارغاً">
                                                                 <div class="help-block">
                                                                 </div>
                                                                 @error('name')

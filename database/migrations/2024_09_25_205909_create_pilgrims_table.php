@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\IdentityType;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -16,8 +17,12 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->bigInteger('identity_number')->unsigned();
-            $table->string('identity_type', 20);
-            $table->bigInteger('phone')->unsigned();
+            $table->enum('identity_type', [
+                IdentityType::NATIONAL_ID->value,
+                IdentityType::PASSPORT->value
+            ]);
+
+            $table->bigInteger('phone')->unsigned()->unique();
             $table->string('health_status', 50);
             $table->unsignedBigInteger('created_by')->nullable();
             $table->foreign('created_by')

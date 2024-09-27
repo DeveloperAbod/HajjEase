@@ -2,7 +2,7 @@
     File Name: styled-venn.js
     Description: D3 styled venn diagram
     ----------------------------------------------------------------------------------------
-    Item Name: Modern Admin - Clean Bootstrap 4 Dashboard HTML Template
+     
     Author: Abod
      
 ==========================================================================================*/

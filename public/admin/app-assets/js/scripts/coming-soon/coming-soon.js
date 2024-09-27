@@ -2,7 +2,7 @@
     File Name: coming-soon.js
     Description: Coming Soon
     ----------------------------------------------------------------------------------------
-    Item Name: Modern Admin - Clean Bootstrap 4 Dashboard HTML Template
+     
     Author: Abod
 
 ==========================================================================================*/

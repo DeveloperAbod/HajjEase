@@ -9,8 +9,8 @@
 @endsection
 
 @section('page_meta')
-    <meta name="description" content="إضافة رحلة جديدة" />
-    <title>لوحة تحكم مكاتب الحج والعمرة | إضافة رحلة جديدة</title>
+    <meta name="description" content="تعديل بيانات الحاج" />
+    <title>لوحة تحكم مكاتب الحج والعمرة | تعديل الحاج</title>
 @endsection
 
 @section('content')
@@ -20,60 +20,48 @@
         <div class="content-wrapper">
             <div class="content-header row">
                 <div class="content-header-left col-md-6 col-12 mb-2">
-                    <h3 class="content-header-title">إضافة رحلة جديدة</h3>
+                    <h3 class="content-header-title">تعديل الحاج</h3>
                     <div class="row breadcrumbs-top">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{ route('home') }}">الصفحة الرئيسية</a></li>
-                                <li class="breadcrumb-item active"><a href="{{ route('trips') }}">الرحلات</a></li>
-                                <li class="breadcrumb-item active">إضافة رحلة جديدة</li>
+                                <li class="breadcrumb-item active"><a href="{{ route('pilgrims') }}">الحجاج</a></li>
+                                <li class="breadcrumb-item active">تعديل: {{ $pilgrim->name }}</li>
                             </ol>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="content-body">
-                <!-- Hidden label form layout section start -->
                 <section id="hidden-label-form-layouts">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title" id="hidden-label-basic-form">
-                                        إضافة رحلة جديدة
-                                    </h4>
-                                    <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
-                                    <div class="heading-elements">
-                                        <ul class="list-inline mb-0">
-                                            <li>
-                                                <a data-action="collapse"><i class="ft-minus"></i></a>
-                                            </li>
-                                            <li>
-                                                <a data-action="expand"><i class="ft-maximize"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                    <h4 class="card-title">تعديل بيانات الحاج</h4>
                                 </div>
-                                <div class="card-content collpase show">
+                                <div class="card-content collapse show">
                                     <div class="card-body">
-                                        <form novalidate class="form" action="{{ route('trips.store') }}" method="POST">
+                                        <form novalidate class="form"
+                                            action="{{ route('pilgrims.update', $pilgrim->id) }}" method="POST">
                                             @csrf
+                                            @method('PUT')
 
                                             <div class="form-body">
                                                 <h4 class="form-section">
-                                                    <i class="la la-plane"></i> بيانات الرحلة
+                                                    <i class="la la-users"></i> بيانات الحاج
                                                 </h4>
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <h5>
-                                                                <span class="required">*</span>اسم الرحلة
+                                                                <span class="required">*</span>اسم الحاج
                                                             </h5>
                                                             <div class="controls">
                                                                 <input type="text" name="name" required
-                                                                    value="{{ old('name') }}" class="form-control mb-1"
-                                                                    placeholder="ادخل اسم الرحلة"
-                                                                    data-validation-required-message="لا يمكن ان يكون اسم الرحلة فارغاً">
+                                                                    value="{{ old('name', $pilgrim->name) }}"
+                                                                    class="form-control mb-1" placeholder="ادخل اسم الحاج"
+                                                                    data-validation-required-message="لا يمكن ان يكون اسم الحاج فارغاً">
                                                                 <div class="help-block">
                                                                 </div>
                                                                 @error('name')
@@ -87,18 +75,45 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <h5>
-                                                                <span class="required">*</span>تاريخ الرحلة
+                                                                <span class="required">*</span>نوع الهوية
                                                             </h5>
                                                             <div class="controls">
-                                                                <input type="date" name="date" required
-                                                                    value="{{ old('date') }}" class="form-control mb-1"
-                                                                    placeholder="اختر تاريخ الرحلة"
-                                                                    data-validation-required-message="لا يمكن ان يكون تاريخ الرحلة فارغاً">
+
+                                                                <select required name="identity_type"
+                                                                    data-validation-required-message="لا يمكن ان يكون نوع الهوية فارغاً"
+                                                                    class="form-control mb-1">
+                                                                    <option value>اختر نوع الهوية</option>
+                                                                    @foreach (\App\Enums\IdentityType::cases() as $identityType)
+                                                                        <option value="{{ $identityType->value }}"
+                                                                            {{ old('identity_type', $pilgrim->identity_type?->value ?? '') == $identityType->value ? 'selected' : '' }}>
+                                                                            {{ $identityType->label() }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
                                                                 <div class="help-block">
                                                                 </div>
-                                                                @error('date')
+                                                                @error('identity_type')
                                                                     <div class="form-text text-danger">
-                                                                        {{ $errors->first('date') }}</div>
+                                                                        {{ $errors->first('identity_type') }}</div>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <h5>
+                                                                <span class="required">*</span>رقم الهوية
+                                                            </h5>
+                                                            <div class="controls">
+                                                                <input type="number" name="identity_number" required
+                                                                    value="{{ old('identity_number', $pilgrim->identity_number) }}"
+                                                                    class="form-control mb-1" placeholder="ادخل رقم الهوية"
+                                                                    data-validation-required-message="لا يمكن ان يكون رقم الهوية فارغاً">
+                                                                <div class="help-block">
+                                                                </div>
+                                                                @error('identity_number')
+                                                                    <div class="form-text text-danger">
+                                                                        {{ $errors->first('identity_number') }}</div>
                                                                 @enderror
                                                             </div>
                                                         </div>
@@ -107,41 +122,40 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <h5>
-                                                                <span class="required">*</span>سعر الرحلة
+                                                                <span class="required">*</span>رقم هاتف الحاج (رقم يمني)
                                                             </h5>
                                                             <div class="controls">
-                                                                <input type="number" name="price" required
-                                                                    value="{{ old('price') }}" class="form-control mb-1"
-                                                                    placeholder="ادخل سعر الرحلة"
-                                                                    data-validation-required-message="لا يمكن ان يكون سعر الرحلة فارغاً">
-                                                                <div class="help-block">
-                                                                </div>
-                                                                @error('price')
-                                                                    <div class="form-text text-danger">
-                                                                        {{ $errors->first('price') }}</div>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <h5>
-                                                                <span class="required">*</span>عدد المقاعد المتاحة
-                                                            </h5>
-                                                            <div class="controls">
-                                                                <input type="number" name="available_seats" required
-                                                                    value="{{ old('available_seats') }}"
+                                                                <input minlength="9" maxlength="9" type="text"
+                                                                    name="phone" required
+                                                                    value="{{ old('phone', $pilgrim->phone) }}"
                                                                     class="form-control mb-1"
-                                                                    placeholder="ادخل عدد المقاعد المتاحة"
-                                                                    data-validation-required-message="لا يمكن ان يكون عدد المقاعد فارغاً">
+                                                                    placeholder="ادخل رقم هاتف الحاج"
+                                                                    data-validation-required-message="لا يمكن ان يكون رقم هاتف الحاج فارغاً">
                                                                 <div class="help-block">
                                                                 </div>
-                                                                @error('available_seats')
+                                                                @error('phone')
                                                                     <div class="form-text text-danger">
-                                                                        {{ $errors->first('available_seats') }}</div>
+                                                                        {{ $errors->first('phone') }}</div>
                                                                 @enderror
                                                             </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <h5>
+                                                                <span class="required">*</span>الحالة الصحية للحاج
+                                                            </h5>
+                                                            <div class="controls">
+                                                                <textarea required data-validation-required-message="لا يمكن ان تكون حالة الحاج الصحية فارغة" name="health_status"
+                                                                    class="form-control mb-1" rows="2">{{ old('health_status', $pilgrim->health_status) }}</textarea>
+                                                            </div>
+                                                            <div class="help-block">
+                                                            </div>
+                                                            @error('health_status')
+                                                                <div class="form-text text-danger">
+                                                                    {{ $errors->first('health_status') }}</div>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                 </div>
@@ -152,7 +166,7 @@
                                                     اعادة ضبط <i class="ft-refresh-cw position-right"></i>
                                                 </button>
                                                 <button type="submit" class="btn btn-primary">
-                                                    <i class="la la-check-square-o"></i>إضافة الرحلة
+                                                    <i class="la la-check-square-o"></i>حفظ البيانات
                                                 </button>
                                             </div>
                                         </form>
@@ -162,7 +176,6 @@
                         </div>
                     </div>
                 </section>
-                <!-- // Hidden label form layout section end -->
             </div>
         </div>
     </div>
@@ -176,7 +189,11 @@
     <script src="/admin/app-assets/vendors/js/forms/icheck/icheck.min.js"></script>
     <script src="/admin/app-assets/vendors/js/forms/toggle/bootstrap-switch.min.js"></script>
     <script src="/admin/app-assets/vendors/js/forms/toggle/switchery.min.js"></script>
+
+
+    <!-- END: Page Vendor JS-->
 @endsection
+
 
 @section('page_js')
     <!-- BEGIN: Page JS-->

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\OfficeController;
+use App\Http\Controllers\PilgrimController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TripController;
@@ -64,4 +66,28 @@ Route::controller(TripController::class)->group(function () {
     Route::get('trips/{trip}/edit', 'edit')->name('trips.edit');
     Route::put('trips/{trip}', 'update')->name('trips.update');
     Route::delete('trips/{trip}', 'destroy')->name('trips.delete');
+});
+
+
+//pilgrims
+Route::controller(PilgrimController::class)->group(function () {
+    Route::get('pilgrims', 'index')->name('pilgrims');
+    Route::get('pilgrims/create', 'create')->name('pilgrims.create');
+    Route::post('pilgrims', 'store')->name('pilgrims.store');
+    Route::get('pilgrims/{pilgrim}', 'show')->name('pilgrims.show');
+    Route::get('pilgrims/{pilgrim}/edit', 'edit')->name('pilgrims.edit');
+    Route::put('pilgrims/{pilgrim}', 'update')->name('pilgrims.update');
+    Route::delete('pilgrims/{pilgrim}', 'destroy')->name('pilgrims.delete');
+});
+
+
+// offices
+Route::controller(OfficeController::class)->group(function () {
+    Route::get('offices', 'index')->name('offices');
+    Route::get('offices/create', 'create')->name('offices.create');
+    Route::post('offices', 'store')->name('offices.store');
+    Route::get('offices/{office}', 'show')->name('offices.show');
+    Route::get('offices/{office}/edit', 'edit')->name('offices.edit');
+    Route::put('offices/{office}', 'update')->name('offices.update');
+    Route::delete('offices/{office}', 'destroy')->name('offices.delete');
 });

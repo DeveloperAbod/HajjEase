@@ -2,7 +2,6 @@
 	File Name: form-validation.js
 	Description: jquery bootsreap validation js
 	----------------------------------------------------------------------------------------
-	Item Name: Modern Admin - Clean Bootstrap 4 Dashboard HTML Template
 	Author: Abod
 	 
 ==========================================================================================*/

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->text('roles_name');
             $table->string('avatar')->nullable()->default('defaultUserImage.png');
-            $table->integer('phone')->unique();
+            $table->bigInteger('phone')->unsigned()->unique();
             $table->tinyInteger('status')->default(1);
             $table->rememberToken();
             $table->timestamps();

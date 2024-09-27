@@ -9,7 +9,7 @@
                             class="ft-menu font-large-1"></i></a>
                 </li>
                 <li class="nav-item">
-                    <a class="navbar-brand" href="/control"><img class="brand-logo" alt="logo"
+                    <a class="navbar-brand" href="{{ route('home') }}"><img class="brand-logo" alt="logo"
                             src="/admin/app-assets/images/logo/logo.png" />
                         <h4 class="brand-text">لوحة تحكم مكاتب الحج والعمرة</h4>
                     </a>

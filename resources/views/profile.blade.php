@@ -111,8 +111,7 @@
                                                                 value="{{ $user_info->phone }}" required=""
                                                                 data-validation-containsnumber-regex="(\d)+" minlength="9"
                                                                 maxlength="9"
-                                                                data-validation-containsnumber-message="رقم الهاتف يحتوي على ارقام فقط"
-                                                                aria-invalid="false">
+                                                                data-validation-containsnumber-message="رقم الهاتف يحتوي على ارقام فقط">
                                                             @error('phone')
                                                                 <div class="form-text text-danger">
                                                                     {{ $errors->first('phone') }}</div>
@@ -126,7 +125,7 @@
                                                         <div class="controls">
                                                             <label>تغيير الصورة الشخصية</label>
                                                             <input type="file" name="avatar"
-                                                                class="form-control mb-1" aria-invalid="false">
+                                                                class="form-control mb-1">
                                                             <div class="help-block">يمكنك تركه فارغا اذا كنت لا تريد
                                                                 تغيير الصورة</div>
                                                             @error('avatar')
@@ -170,8 +169,7 @@
                                                         <div class="controls">
                                                             <input type="password" name="current_password"
                                                                 class="form-control mb-1" required=""
-                                                                data-validation-required-message="هذا الحقل مطلوب"
-                                                                aria-invalid="false">
+                                                                data-validation-required-message="هذا الحقل مطلوب">
                                                             <div class="help-block"></div>
                                                             @error('current_password')
                                                                 <div class="form-text text-danger">
@@ -189,8 +187,7 @@
                                                         <div class="controls">
                                                             <input type="password" name="new_password"
                                                                 class="form-control mb-1" required=""
-                                                                data-validation-required-message="هذا الحقل مطلوب"
-                                                                aria-invalid="false">
+                                                                data-validation-required-message="هذا الحقل مطلوب">
                                                             <div class="help-block"></div>
                                                             @error('new_password')
                                                                 <div class="form-text text-danger">
@@ -207,8 +204,7 @@
                                                         <div class="controls">
                                                             <input type="password" name="new_password_confirmation"
                                                                 data-validation-match-match="new_password"
-                                                                class="form-control mb-1" required=""
-                                                                aria-invalid="false">
+                                                                class="form-control mb-1" required="">
                                                             <div class="help-block"></div>
                                                             @error('new_password_confirmation')
                                                                 <div class="form-text text-danger">

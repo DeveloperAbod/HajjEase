@@ -3,7 +3,7 @@
   Description: Menu navigation, custom scrollbar, hover scroll bar, multilevel menu
   initialization and manipulations
   ----------------------------------------------------------------------------------------
-  Item Name: Modern Admin - Clean Bootstrap 4 Dashboard HTML Template
+   
   Author: Abod
   Author URL: hhttp://www.themeforest.net/user/Abod
 ==========================================================================================*/

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\CheckUserStatus;
 use App\Models\Trip;
 use Illuminate\Http\Request;
 
@@ -10,14 +11,14 @@ class TripController extends Controller
     function __construct()
     {
         // Apply the auth middleware to all actions in this controller
-        // If you don't want to restrict any action, you can even remove this middleware.
         $this->middleware('auth');
+        $this->middleware(CheckUserStatus::class);
     }
 
     // Display a list of all trips
     public function index()
     {
-        $trips = Trip::all();  // Fetch all trips without restriction
+        $trips = Trip::all();
         return view('trips.index', compact('trips'));
     }
 
@@ -34,8 +35,8 @@ class TripController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'date' => 'required|date',
-            'price' => 'required|numeric|min:0',
-            'available_seats' => 'required|integer|min:1',
+            'price' => 'required|numeric|min:0|max:12',
+            'available_seats' => 'required|integer|min:1|max:11',
         ]);
 
         // Create a new trip instance
@@ -71,8 +72,8 @@ class TripController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'date' => 'required|date',
-            'price' => 'required|numeric|min:0',
-            'available_seats' => 'required|integer|min:1',
+            'price' => 'required|numeric|min:0|max:12',
+            'available_seats' => 'required|integer|min:1|max:11',
         ]);
 
         // Update the trip with the new data

@@ -3,7 +3,7 @@
     Description: Provide pagination links for your site or app with the multi-page 
                 pagination component.
     ----------------------------------------------------------------------------------------
-    Item Name: Modern Admin - Clean Bootstrap 4 Dashboard HTML Template
+     
     Author: Abod
     Author URL: hhttp://www.themeforest.net/user/Abod
 ==========================================================================================*/

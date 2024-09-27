@@ -2,7 +2,7 @@
     File Name: multi-column.js
     Description: Chartist multi column chart
     ----------------------------------------------------------------------------------------
-    Item Name: Modern Admin - Clean Bootstrap 4 Dashboard HTML Template
+     
     Author: Abod
      
 ==========================================================================================*/

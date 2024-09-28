@@ -6,6 +6,7 @@ use App\Enums\IdentityType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Pilgrim extends Model
 {
@@ -30,6 +31,10 @@ class Pilgrim extends Model
     public function creator(): BelongsTo
     {
         return $this->belongsTo(User::class, 'created_by');
+    }
+    public function bookings(): HasMany
+    {
+        return $this->hasMany(booking::class);
     }
 
 

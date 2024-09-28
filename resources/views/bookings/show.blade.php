@@ -4,7 +4,8 @@
     <!-- BEGIN: Page CSS-->
     <link rel="stylesheet" type="text/css" href="/admin/app-assets/css-rtl/core/menu/menu-types/vertical-menu.min.css" />
     <link rel="stylesheet" type="text/css" href="/admin/app-assets/css-rtl/core/colors/palette-gradient.min.css" />
-    <link rel="stylesheet" type="text/css" href="/admin/app-assets/css-rtl/pages/page-users.min.css" /> <!-- END: Page CSS-->
+    <link rel="stylesheet" type="text/css" href="/admin/app-assets/css-rtl/pages/page-users.min.css" />
+    <!-- END: Page CSS-->
     {{-- for tables --}}
     <link rel="stylesheet" type="text/css" href="/admin/app-assets/vendors/css/tables/datatable/datatables.min.css" />
 @endsection
@@ -280,7 +281,6 @@
     <script src="/admin/app-assets/js/scripts/tables/datatables-extensions/datatable-button/datatable-print.min.js">
     </script>
     {{-- end print tables --}}
-    <!-- BEGIN: Page JS-->
     <script src="/admin/app-assets/js/scripts/tables/datatables/datatable-basic.min.js"></script>
     <script>
         $(document).on('click', '.delete_payment_btn', function(e) {

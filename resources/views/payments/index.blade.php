@@ -198,6 +198,13 @@
             }).hide();
         });
         //end filter
+
+        // Clear filter functionality
+        $('#clearFilterBtn').on('click', function() {
+            $('#startDate').val(''); // إعادة تعيين تاريخ البداية
+            $('#endDate').val(''); // إعادة تعيين تاريخ النهاية
+            $('#Table tr').show(); // عرض جميع الرحلات
+        });
         $(document).on('click', '.delete_payment_btn', function(e) {
             e.preventDefault();
             var id = $(this).val();

@@ -92,7 +92,7 @@
                                                         <th>العمليات</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody id="tripTable">
+                                                <tbody id="Table">
                                                     @foreach ($trips as $item)
                                                         <tr>
                                                             <td>{{ $item->id }}</td>
@@ -174,14 +174,14 @@
                 let startDate = $('#startDate').val();
                 let endDate = $('#endDate').val();
 
-                $('#tripTable tr').filter(function() {
+                $('#Table tr').filter(function() {
                     let tripDate = $(this).find('td:eq(3)')
                         .text(); // Assuming date is in the 4th column
                     return (!startDate || new Date(tripDate) >= new Date(startDate)) &&
                         (!endDate || new Date(tripDate) <= new Date(endDate));
                 }).show();
 
-                $('#tripTable tr').filter(function() {
+                $('#Table tr').filter(function() {
                     let tripDate = $(this).find('td:eq(3)')
                         .text(); // Assuming date is in the 4th column
                     return (startDate && new Date(tripDate) < new Date(startDate)) ||
@@ -194,7 +194,7 @@
             $('#clearFilterBtn').on('click', function() {
                 $('#startDate').val(''); // إعادة تعيين تاريخ البداية
                 $('#endDate').val(''); // إعادة تعيين تاريخ النهاية
-                $('#tripTable tr').show(); // عرض جميع الرحلات
+                $('#Table tr').show(); // عرض جميع الرحلات
             });
 
             $(document).on('click', '.delete_trip_btn', function(e) {

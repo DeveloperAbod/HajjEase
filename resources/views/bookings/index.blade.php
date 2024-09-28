@@ -58,6 +58,24 @@
                                 </div>
                                 <div class="card-content collapse show">
                                     <div class="card-body card-dashboard">
+                                        <!-- Filter Section -->
+                                        <div class="row mb-3">
+                                            <div class="col-md-4 mb-1">
+                                                <input type="date" id="startDate" class="form-control"
+                                                    placeholder="تاريخ البداية">
+                                            </div>
+                                            <div class="col-md-4 mb-1">
+                                                <input type="date" id="endDate" class="form-control"
+                                                    placeholder="تاريخ النهاية">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <button id="filterBtn" class="btn btn-primary">فلترة</button>
+                                                <button id="clearFilterBtn" class="btn btn-secondary">إلغاء الفلترة</button>
+                                                <!-- زر إلغاء الفلترة -->
+                                            </div>
+                                        </div>
+                                        <!-- End of Filter Section -->
+
                                         <div class="table-responsive">
                                             <table class="table table-striped table-bordered dataex-visibility-selector">
                                                 <thead>
@@ -73,7 +91,7 @@
                                                         <th>العمليات</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody>
+                                                <tbody id="Table">
                                                     @foreach ($bookings as $booking)
                                                         <tr>
                                                             <td>{{ $booking->id }}</td>
@@ -161,6 +179,27 @@
     </script>
     {{-- end print tables --}}
     <script>
+        // Filter by date range functionality
+        $('#filterBtn').on('click', function() {
+            let startDate = $('#startDate').val();
+            let endDate = $('#endDate').val();
+
+            $('#Table tr').filter(function() {
+                let bookingDate = $(this).find('td:eq(3)')
+                    .text(); // Assuming date is in the 4th column
+                return (!startDate || new Date(bookingDate) >= new Date(startDate)) &&
+                    (!endDate || new Date(bookingDate) <= new Date(endDate));
+            }).show();
+
+            $('#Table tr').filter(function() {
+                let bookingDate = $(this).find('td:eq(3)')
+                    .text(); // Assuming date is in the 4th column
+                return (startDate && new Date(bookingDate) < new Date(startDate)) ||
+                    (endDate && new Date(bookingDate) > new Date(endDate));
+            }).hide();
+        });
+        //end filter
+
         $(document).on('click', '.delete_booking_btn', function(e) {
             e.preventDefault();
             var id = $(this).val();

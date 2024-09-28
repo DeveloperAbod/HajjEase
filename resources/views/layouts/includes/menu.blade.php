@@ -81,7 +81,40 @@
                     </li>
                 </ul>
             </li>
-
+            <li class="nav-item has-sub {{ Route::is('bookings.*') ? 'open' : '' }}">
+                <a href="#"><i class="la la-ticket"></i><span class="menu-title">الحجوزات</span></a>
+                <ul class="menu-content">
+                    <li class="{{ Route::is('bookings') ? 'active' : '' }}">
+                        <a class="menu-item" href="{{ route('bookings') }}">
+                            <i class="ft-layers"></i>
+                            <span>جميع الحجوزات</span>
+                        </a>
+                    </li>
+                    <li class="{{ Route::is('bookings.create') ? 'active' : '' }}">
+                        <a class="menu-item" href="{{ route('bookings.create') }}">
+                            <i class="ft-plus-circle"></i>
+                            <span>اضافة حجز</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item has-sub {{ Route::is('payments.*') ? 'open' : '' }}">
+                <a href="#"><i class="la la-credit-card"></i><span class="menu-title">المدفوعات</span></a>
+                <ul class="menu-content">
+                    <li class="{{ Route::is('payments') ? 'active' : '' }}">
+                        <a class="menu-item" href="{{ route('payments') }}">
+                            <i class="ft-layers"></i>
+                            <span>جميع المدفوعات</span>
+                        </a>
+                    </li>
+                    <li class="{{ Route::is('payments.create') ? 'active' : '' }}">
+                        <a class="menu-item" href="{{ route('payments.create') }}">
+                            <i class="ft-plus-circle"></i>
+                            <span>اضافة مدفوعات</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
         </ul>
     </div>
 </div>

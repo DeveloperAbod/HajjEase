@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,13 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('trips', function (Blueprint $table) {
+        Schema::create('bookings', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->date('date');
-            $table->decimal('price', 10, 0);
-            $table->integer('available_seats');
+            $table->unsignedBigInteger('pilgrim_id')->nullable();
+            $table->unsignedBigInteger('trip_id')->nullable();
             $table->unsignedBigInteger('created_by')->nullable();
+            $table->date('date');
+            $table->boolean('status')->default(0);
+
+
+
+            $table->foreign('pilgrim_id')
+                ->references('id')
+                ->on('pilgrims');
+            $table->foreign('trip_id')
+                ->references('id')
+                ->on('trips');
             $table->foreign('created_by')
                 ->references('id')
                 ->on('users')
@@ -32,6 +40,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('trips');
+        Schema::dropIfExists('bookings');
     }
 };

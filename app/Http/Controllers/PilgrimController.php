@@ -21,7 +21,7 @@ class PilgrimController extends Controller
     // Display a list of all pilgrims
     public function index()
     {
-        $pilgrims = Pilgrim::all();
+        $pilgrims = Pilgrim::with(['creator'])->get();
         return view('pilgrims.index', compact('pilgrims'));
     }
 

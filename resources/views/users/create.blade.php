@@ -197,8 +197,6 @@
                                                         <div class="form-group">
                                                             <h5>
                                                                 <span class="required">*</span>الصلاحيات
-                                                                <small class="text-muted">اضغط ctrl في لوحة المفاتيح واختر
-                                                                    اكثر من صلاحية</small>
                                                             </h5>
                                                             <div class="controls">
                                                                 <select required
@@ -283,6 +281,7 @@
 @section('page_js')
     <!-- BEGIN: Page JS-->
     <script src="/admin/app-assets/js/scripts/forms/validation/form-validation.js"></script>
+    {{-- select 2 --}}
     <script src="/admin/app-assets/js/scripts/forms/select/form-select2.min.js"></script>
     <!-- END: Page JS-->
 @endsection

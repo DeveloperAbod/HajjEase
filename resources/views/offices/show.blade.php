@@ -75,12 +75,6 @@
                                         </table>
                                     </div>
                                 </div>
-                                @can('تعديل المكتب')
-                                    <div class="form-actions">
-                                        <a href="{{ route('offices.edit', $office->id) }}" class="btn btn-sm btn-primary">تعديل
-                                            المكتب</a>
-                                    </div>
-                                @endcan
                             </div>
                         </div>
                     </div>

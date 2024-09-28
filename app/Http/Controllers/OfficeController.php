@@ -16,7 +16,8 @@ class OfficeController extends Controller
     // عرض قائمة بجميع المكاتب
     public function index()
     {
-        $offices = Office::all();
+        $offices = Office::with(['creator'])->get();
+
         return view('offices.index', compact('offices'));
     }
 

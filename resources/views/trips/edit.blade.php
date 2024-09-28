@@ -92,9 +92,9 @@
                                                             </h5>
                                                             <div class="controls">
                                                                 <input type="number" name="price"
-                                                                    value="{{ old('price', $trip->price) }}"
+                                                                    value="{{ old('price', number_format($trip->price)) }}"
                                                                     class="form-control mb-1" placeholder="ادخل السعر"
-                                                                    step="0.01" required>
+                                                                    required>
                                                                 @error('price')
                                                                     <div class="form-text text-danger">{{ $message }}</div>
                                                                 @enderror

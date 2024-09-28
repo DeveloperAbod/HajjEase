@@ -18,7 +18,7 @@ class TripController extends Controller
     // Display a list of all trips
     public function index()
     {
-        $trips = Trip::all();
+        $trips = Trip::with(['creator'])->get();
         return view('trips.index', compact('trips'));
     }
 
@@ -35,8 +35,9 @@ class TripController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'date' => 'required|date',
-            'price' => 'required|numeric|min:0|max:12',
-            'available_seats' => 'required|integer|min:1|max:11',
+            'price' => 'required|numeric|digits_between:1,10',
+            'available_seats' => 'required|numeric|digits_between:1,10',
+
         ]);
 
         // Create a new trip instance
@@ -72,8 +73,8 @@ class TripController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'date' => 'required|date',
-            'price' => 'required|numeric|min:0|max:12',
-            'available_seats' => 'required|integer|min:1|max:11',
+            'price' => 'required|numeric|digits_between:1,10',
+            'available_seats' => 'required|numeric|digits_between:1,10',
         ]);
 
         // Update the trip with the new data

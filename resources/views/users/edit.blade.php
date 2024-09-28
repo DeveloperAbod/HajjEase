@@ -221,8 +221,6 @@
                                                         <div class="form-group">
                                                             <h5>
                                                                 <span class="required">*</span>الصلاحيات
-                                                                <small class="text-muted">اضغط ctrl في لوحة المفاتيح واختر
-                                                                    اكثر من صلاحية</small>
                                                             </h5>
                                                             <div class="controls">
                                                                 <select required placeholder="اختر صلاحية "

@@ -50,13 +50,6 @@
                                 </div>
                             </div>
                         </div>
-                        @can('تعديل مستخدم')
-                            <div class="col-12 col-sm-5 px-0 d-flex justify-content-end align-items-center px-1 mb-2">
-                                <a href="/control/users/{{ $user->id }}/edit" class="btn btn-sm btn-primary">تعديل
-                                    المستخدم</a>
-                            </div>
-                        @endcan
-
                     </div>
                     <!-- users view media object ends -->
                     <!-- users view card data start -->

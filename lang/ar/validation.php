@@ -220,6 +220,8 @@ return [
         'identity_type' => 'نوع الهوية',
         'roles_name' => 'الصلاحيات',
         'map_url' => 'رابط الخريطة',
+        'amount_paid' => 'المبلغ المدفوع',
+        'receipt_number' => 'رقم الايصال',
         // 'slug'                  => ' ',
     ],
 

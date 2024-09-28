@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\OfficeController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PilgrimController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
@@ -90,4 +92,28 @@ Route::controller(OfficeController::class)->group(function () {
     Route::get('offices/{office}/edit', 'edit')->name('offices.edit');
     Route::put('offices/{office}', 'update')->name('offices.update');
     Route::delete('offices/{office}', 'destroy')->name('offices.delete');
+});
+
+// bookings
+Route::controller(BookingController::class)->group(function () {
+    Route::get('bookings', 'index')->name('bookings');
+    Route::get('bookings/create', 'create')->name('bookings.create');
+    Route::post('bookings', 'store')->name('bookings.store');
+    Route::get('bookings/{booking}', 'show')->name('bookings.show');
+    Route::get('bookings/{booking}/edit', 'edit')->name('bookings.edit');
+    Route::put('bookings/{booking}', 'update')->name('bookings.update');
+    Route::get('bookings/{booking}/accept', 'accept')->name('bookings.accept');
+    Route::get('bookings/{booking}/reject', 'reject')->name('bookings.reject');
+    Route::delete('bookings/{booking}', 'destroy')->name('bookings.delete');
+});
+
+// payments
+Route::controller(PaymentController::class)->group(function () {
+    Route::get('payments', 'index')->name('payments');
+    Route::get('payments/create', 'create')->name('payments.create');
+    Route::post('payments', 'store')->name('payments.store');
+    Route::get('payments/{payment}', 'show')->name('payments.show');
+    Route::get('payments/{payment}/edit', 'edit')->name('payments.edit');
+    Route::put('payments/{payment}', 'update')->name('payments.update');
+    Route::delete('payments/{payment}', 'destroy')->name('payments.delete');
 });

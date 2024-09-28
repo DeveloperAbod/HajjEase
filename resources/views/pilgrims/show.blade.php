@@ -81,13 +81,6 @@
                                         </table>
                                     </div>
                                 </div>
-                                @can('تعديل رحلة')
-                                    <div class="form-actions">
-                                        <a href="{{ route('pilgrim.edit', $pilgrim->id) }}"
-                                            class="btn btn-sm btn-primary">تعديل
-                                            الحاج</a>
-                                    </div>
-                                @endcan
                             </div>
                         </div>
                     </div>

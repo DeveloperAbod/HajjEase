@@ -232,6 +232,84 @@
                 </div>
                 <!--/ home -->
 
+                <!-- Charts Section -->
+                <div class="row mt-4 match-height">
+                    <div class="col-xl-5 col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">احصائية المدفوعات</h4>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="monthlyPaymentsChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-7 col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">احصائية الحجاج</h4>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="pilgrimsChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{-- --------------------------------------------- --}}
+
+                    <!-- مخطط المستخدمين الشهري -->
+                    <div class="col-xl-6 col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">إحصائيات المستخدمين الشهرية</h4>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="usersChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- مخطط الرحلات الشهري -->
+                    <div class="col-xl-6 col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">إحصائيات الرحلات الشهرية</h4>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="tripsChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- مخطط الحجوزات الشهري -->
+                    <div class="col-xl-6 col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">إحصائيات الحجوزات الشهرية</h4>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="bookingsChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- مخطط المدفوعات الشهرية -->
+
+                    <div class="col-xl-6 col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">إحصائيات المدفوعات الشهرية</h4>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="paymentsChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/ Charts Section -->
+
+                </div>
             </div>
         </div>
     </div>
@@ -245,10 +323,245 @@
     <script src="/admin/app-assets/vendors/js/charts/raphael-min.js"></script>
     <script src="/admin/app-assets/vendors/js/charts/morris.min.js"></script>
     <script src="/admin/app-assets/vendors/js/timeline/horizontal-timeline.js"></script>
+    {{--     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+ --}}
+    <script src="/admin/app-assets/vendors/js/charts/chartV4.min.js"></script>
+
     <!-- END: Page Vendor JS-->
 @endsection
 
 @section('page_js')
-    <!-- BEGIN: Page JS-->
-    <!-- END: Page JS-->
+    {{-- i write it here to clear what i do , it will be change to file if the project productions --}}
+    <script>
+        // البيانات الشهرية من PHP
+        var usrsData = @json($monthlyUsers);
+        var tripsData = @json($monthlyTrips);
+        var bookingsData = @json($monthlyBookings);
+        var paymentsData = @json($monthlyPayments);
+        var monthlyPilgrimsData = @json($monthlyPilgrims);
+
+
+        // إعداد المخططات
+        var months = ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر',
+            'ديسمبر'
+        ];
+
+        // Helper function for creating gradient backgrounds
+        function createGradient(ctx, colorStart, colorEnd) {
+            let gradient = ctx.createLinearGradient(0, 0, 0, 400);
+            gradient.addColorStop(0, colorStart);
+            gradient.addColorStop(1, colorEnd);
+            return gradient;
+        }
+
+        // مخطط المستخدمين مع تأثيرات التمرير
+        var clientsCtx = document.getElementById('usersChart').getContext('2d');
+        new Chart(clientsCtx, {
+            type: 'line',
+            data: {
+                labels: months,
+                datasets: [{
+                    label: 'عدد المستخدمين',
+                    data: usrsData,
+                    borderColor: '#6f42c1',
+                    backgroundColor: createGradient(clientsCtx, '#6f42c1', 'rgba(111, 66, 193, 0.2)'),
+                    fill: true,
+                    tension: 0.4 // Adds a slight curve to the line
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                return 'المستخدمين في هذا الشهر: ' + tooltipItem.raw;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // مخطط الرحلات
+        var tripsCtx = document.getElementById('tripsChart').getContext('2d');
+        new Chart(tripsCtx, {
+            type: 'line',
+            data: {
+                labels: months,
+                datasets: [{
+                    label: 'عدد الرحلات',
+                    data: tripsData,
+                    borderColor: '#e83e8c',
+                    backgroundColor: createGradient(tripsCtx, '#e83e8c', 'rgba(232, 62, 140, 0.2)'),
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                return 'الرحلات في هذا الشهر: ' + tooltipItem.raw;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // مخطط الحجوزات
+        var bookingsCtx = document.getElementById('bookingsChart').getContext('2d');
+        new Chart(bookingsCtx, {
+            type: 'line',
+            data: {
+                labels: months,
+                datasets: [{
+                    label: 'عدد الحجوزات',
+                    data: bookingsData,
+                    borderColor: '#17a2b8',
+                    backgroundColor: createGradient(bookingsCtx, '#17a2b8', 'rgba(23, 162, 184, 0.2)'),
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                return 'الحجوزات في هذا الشهر: ' + tooltipItem.raw;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // مخطط المدفوعات
+        var paymentsCtx = document.getElementById('paymentsChart').getContext('2d');
+        new Chart(paymentsCtx, {
+            type: 'line',
+            data: {
+                labels: months,
+                datasets: [{
+                    label: 'إجمالي المدفوعات',
+                    data: paymentsData,
+                    borderColor: '#28a745',
+                    backgroundColor: createGradient(paymentsCtx, '#28a745', 'rgba(40, 167, 69, 0.2)'),
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                return 'المدفوعات: ' + tooltipItem.raw + ' ريال';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // المدفوعات بطريقة اخرى
+        var polarCtx = document.getElementById('monthlyPaymentsChart').getContext('2d');
+        var monthlyPaymentsChart = new Chart(polarCtx, {
+            type: 'polarArea',
+            data: {
+                labels: months,
+                datasets: [{
+                    label: 'المدفوعات في هذا الشهر',
+                    data: paymentsData,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                return 'المدفوعات: ' + tooltipItem.raw + ' ريال';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // عدد الحجاح
+        new Chart(document.getElementById('pilgrimsChart').getContext('2d'), {
+            type: 'line',
+            data: {
+                labels: months,
+                datasets: [{
+                    label: 'عدد الحجاج',
+                    data: monthlyPilgrimsData,
+                    borderColor: '#17a2b8',
+                    backgroundColor: createGradient(bookingsCtx, '#17a2b8', 'rgba(23, 162, 184, 0.2)'),
+                    fill: true,
+                    tension: 0.4,
+                    borderWidth: 2,
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'عدد الحجاج'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'الشهور'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
 @endsection

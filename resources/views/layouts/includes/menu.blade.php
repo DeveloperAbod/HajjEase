@@ -9,7 +9,7 @@
             <li class="nav-item has-sub {{ Route::is('users.*') || Route::is('roles.*') ? 'open' : '' }}">
                 <a href="#"><i class="la la-user"></i><span class="menu-title">المستخدمين والصلاحيات</span></a>
                 <ul class="menu-content">
-                    <li class="{{ Route::is('users.index') ? 'active' : '' }}">
+                    <li class="{{ Route::is('users') ? 'active' : '' }}">
                         <a class="menu-item" href="{{ Route('users') }}"><i class="ft-layers"></i><span>جميع
                                 المستخدمين</span></a>
                     </li>
@@ -17,7 +17,7 @@
                         <a class="menu-item" href="{{ Route('users.create') }}"><i
                                 class="ft-plus-circle"></i><span>اضافة مستخدم</span></a>
                     </li>
-                    <li class="{{ Route::is('roles.index') ? 'active' : '' }}">
+                    <li class="{{ Route::is('roles') ? 'active' : '' }}">
                         <a class="menu-item" href="{{ Route('roles') }}"><i class="ft-layers"></i><span>جميع
                                 الصلاحيات</span></a>
                     </li>

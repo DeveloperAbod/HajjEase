@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Middleware\CheckUserStatus;
+use App\Models\Booking;
+use App\Models\Office;
+use App\Models\Payment;
+use App\Models\Pilgrim;
+use App\Models\Trip;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
@@ -29,16 +34,16 @@ class HomeController extends Controller
     {
         $users_unm = User::all()->count();
         $Roles_unm = Role::all()->count();
-
-        $news_unm = 1;
-        $events_unm = 1;
-        $athletes_unm = 1;
-        $talented_unm = 1;
-        $faqs_unm = 1;
-        $pdfRules_unm = 1;
-
-
-
-        return view('index', compact('news_unm', 'events_unm', 'athletes_unm', 'talented_unm', 'faqs_unm', 'pdfRules_unm', 'users_unm', 'Roles_unm'));
+        $trips_unm = Trip::all()->count();
+        $pilgrims_unm = Pilgrim::all()->count();
+        $offices_unm = Office::all()->count();
+        $bookings_unm = Booking::all()->count();
+        $payments_unm = Payment::all()->count();
+        $payments_amount = Payment::all();
+        $totalAmountPaid = Payment::sum('amount_paid');
+        return view(
+            'index',
+            compact('users_unm', 'Roles_unm', 'trips_unm', 'bookings_unm', 'pilgrims_unm', 'offices_unm', 'payments_unm', 'totalAmountPaid')
+        );
     }
 }

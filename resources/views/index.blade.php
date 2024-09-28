@@ -82,17 +82,17 @@
                         </a>
                     </div>
                     <div class="col-xl-3 col-lg-6 col-12">
-                        <a href="/control/news">
+                        <a href="{{ route('trips') }}">
                             <div class="card pull-up">
                                 <div class="card-content">
                                     <div class="card-body">
                                         <div class="media d-flex">
                                             <div class="media-body text-left">
-                                                <h3 class="info">{{ $news_unm }}</h3>
-                                                <h6>الاخبار</h6>
+                                                <h3 class="info">{{ $trips_unm }}</h3>
+                                                <h6>الرحلات</h6>
                                             </div>
                                             <div>
-                                                <i class="la la-newspaper-o info font-large-2 float-right"></i>
+                                                <i class="la la-plane info font-large-2 float-right"></i>
                                             </div>
                                         </div>
                                         <div class="progress progress-sm mt-1 mb-0 box-shadow-2">
@@ -106,17 +106,17 @@
                         </a>
                     </div>
                     <div class="col-xl-3 col-lg-6 col-12">
-                        <a href="/control/events">
+                        <a href="{{ route('pilgrims') }}">
                             <div class="card pull-up">
                                 <div class="card-content">
                                     <div class="card-body">
                                         <div class="media d-flex">
                                             <div class="media-body text-left">
-                                                <h3 class="warning">{{ $events_unm }}</h3>
-                                                <h6>متنوعة</h6>
+                                                <h3 class="warning">{{ $pilgrims_unm }}</h3>
+                                                <h6>الحجاج</h6>
                                             </div>
                                             <div>
-                                                <i class="la la-share-alt warning font-large-2 float-right"></i>
+                                                <i class="la la-users warning font-large-2 float-right"></i>
                                             </div>
                                         </div>
                                         <div class="progress progress-sm mt-1 mb-0 box-shadow-2">
@@ -130,17 +130,17 @@
                         </a>
                     </div>
                     <div class="col-xl-3 col-lg-6 col-12">
-                        <a href="/control/athletes">
+                        <a href="{{ route('offices') }}">
                             <div class="card pull-up">
                                 <div class="card-content">
                                     <div class="card-body">
                                         <div class="media d-flex">
                                             <div class="media-body text-left">
-                                                <h3 class="success">{{ $athletes_unm }}</h3>
-                                                <h6>رياضة</h6>
+                                                <h3 class="success">{{ $offices_unm }}</h3>
+                                                <h6>المكاتب</h6>
                                             </div>
                                             <div>
-                                                <i class="ft-sunrise success font-large-2 float-right"></i>
+                                                <i class="la la-building success font-large-2 float-right"></i>
                                             </div>
                                         </div>
                                         <div class="progress progress-sm mt-1 mb-0 box-shadow-2">
@@ -155,21 +155,21 @@
                         </a>
                     </div>
                     <div class="col-xl-3 col-lg-6 col-12">
-                        <a href="/control/talented">
+                        <a href="{{ route('bookings') }}">
                             <div class="card pull-up">
                                 <div class="card-content">
                                     <div class="card-body">
                                         <div class="media d-flex">
                                             <div class="media-body text-left">
-                                                <h3 class="danger">{{ $talented_unm }}</h3>
-                                                <h6>شباب</h6>
+                                                <h3 class="info">{{ $bookings_unm }}</h3>
+                                                <h6>الحجوزات</h6>
                                             </div>
                                             <div>
-                                                <i class="la la-diamond danger font-large-2 float-right"></i>
+                                                <i class="la la-ticket info font-large-2 float-right"></i>
                                             </div>
                                         </div>
                                         <div class="progress progress-sm mt-1 mb-0 box-shadow-2">
-                                            <div class="progress-bar bg-gradient-x-danger" role="progressbar"
+                                            <div class="progress-bar bg-gradient-x-info" role="progressbar"
                                                 style="width: 85%" aria-valuenow="85" aria-valuemin="0"
                                                 aria-valuemax="100">
                                             </div>
@@ -180,17 +180,17 @@
                         </a>
                     </div>
                     <div class="col-xl-3 col-lg-6 col-12">
-                        <a href="/control/faqs">
+                        <a href="{{ route('payments') }}">
                             <div class="card pull-up">
                                 <div class="card-content">
                                     <div class="card-body">
                                         <div class="media d-flex">
                                             <div class="media-body text-left">
-                                                <h3 class="purple">{{ $faqs_unm }}</h3>
-                                                <h6>الأسئلة الشائعة</h6>
+                                                <h3 class="purple">{{ $payments_unm }}</h3>
+                                                <h6>المدفوعات</h6>
                                             </div>
                                             <div>
-                                                <i class="la la-question purple font-large-2 float-right"></i>
+                                                <i class="la la-credit-card purple font-large-2 float-right"></i>
                                             </div>
                                         </div>
                                         <div class="progress progress-sm mt-1 mb-0 box-shadow-2">
@@ -205,14 +205,14 @@
                         </a>
                     </div>
                     <div class="col-xl-3 col-lg-6 col-12">
-                        <a href="/control/rules">
+                        <a href="{{ route('payments') }}">
                             <div class="card pull-up">
                                 <div class="card-content">
                                     <div class="card-body">
                                         <div class="media d-flex">
                                             <div class="media-body text-left">
-                                                <h3 class="yellow">{{ $pdfRules_unm }}</h3>
-                                                <h6>الأنظمة واللوائح</h6>
+                                                <h3 class="yellow">{{ number_format($totalAmountPaid) }}</h3>
+                                                <h6>اجمالي المدفوعات</h6>
                                             </div>
                                             <div>
                                                 <i class="la la-info-circle yellow font-large-2 float-right"></i>

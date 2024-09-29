@@ -16,6 +16,10 @@ class PilgrimController extends Controller
         // Apply the auth middleware to all actions in this controller
         $this->middleware('auth');
         $this->middleware(CheckUserStatus::class);
+        $this->middleware('permission:عرض الحجاج', ['only' => ['index', 'show']]);
+        $this->middleware('permission:اضافة حاج', ['only' => ['create', 'store']]);
+        $this->middleware('permission:تعديل حاج', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:حذف حاج', ['only' => ['destroy']]);
     }
 
     // Display a list of all pilgrims

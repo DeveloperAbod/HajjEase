@@ -37,12 +37,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="content-header-right col-md-6 col-12">
-                    <div class="btn-group float-md-right" role="group" aria-label="Button group with nested dropdown">
-                        <a href="{{ Route('roles.create') }}" class="btn btn-info round  box-shadow-2 px-2 mb-1"><i
-                                class="ft-plus-circle icon-left"></i> اضافة صلاحية جديدة</a>
+                @can('اضافة صلاحية')
+                    <div class="content-header-right col-md-6 col-12">
+                        <div class="btn-group float-md-right" role="group" aria-label="Button group with nested dropdown">
+                            <a href="{{ Route('roles.create') }}" class="btn btn-info round  box-shadow-2 px-2 mb-1"><i
+                                    class="ft-plus-circle icon-left"></i> اضافة صلاحية جديدة</a>
+                        </div>
                     </div>
-                </div>
+                @endcan
 
 
 
@@ -98,11 +100,15 @@
                                                                         style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(14px, 41px, 0px);">
                                                                         <a class="dropdown-item"
                                                                             href="{{ Route('roles.show', $item->id) }}">عرض</a>
-                                                                        <a class="dropdown-item"
-                                                                            href="{{ Route('roles.edit', $item->id) }}">تعديل</a>
-                                                                        <button class="dropdown-item delete_roles_btn"
-                                                                            value="{{ $item->id }}">حذف</button>
+                                                                        @can('تعديل صلاحية')
+                                                                            <a class="dropdown-item"
+                                                                                href="{{ Route('roles.edit', $item->id) }}">تعديل</a>
+                                                                        @endcan
 
+                                                                        @can('حذف صلاحية')
+                                                                            <button class="dropdown-item delete_roles_btn"
+                                                                                value="{{ $item->id }}">حذف</button>
+                                                                        @endcan
                                                                     </div>
                                                                 </div>
                                                             </td>

@@ -10,9 +10,13 @@ class TripController extends Controller
 {
     function __construct()
     {
-        // Apply the auth middleware to all actions in this controller
         $this->middleware('auth');
         $this->middleware(CheckUserStatus::class);
+
+        $this->middleware('permission:عرض الرحلات', ['only' => ['index', 'show']]);
+        $this->middleware('permission:اضافة رحلة', ['only' => ['create', 'store']]);
+        $this->middleware('permission:تعديل رحلة', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:حذف رحلة', ['only' => ['destroy']]);
     }
 
     // Display a list of all trips

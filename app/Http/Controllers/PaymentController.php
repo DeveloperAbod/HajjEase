@@ -13,6 +13,10 @@ class PaymentController extends Controller
     {
         $this->middleware('auth');
         $this->middleware(CheckUserStatus::class);
+        $this->middleware('permission:عرض المدفوعات', ['only' => ['index', 'show']]);
+        $this->middleware('permission:اضافة دفع', ['only' => ['create', 'store']]);
+        $this->middleware('permission:تعديل دفع', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:حذف دفع', ['only' => ['destroy']]);
     }
 
     // Display a list of all payments

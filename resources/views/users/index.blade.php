@@ -37,13 +37,14 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="content-header-right col-md-6 col-12">
-                    <div class="btn-group float-md-right" role="group" aria-label="Button group with nested dropdown">
-                        <a href="{{ Route('users.create') }}" class="btn btn-info round  box-shadow-2 px-2 mb-1"><i
-                                class="ft-plus-circle icon-left"></i> اضافة مستخدم جديد</a>
+                @can('اضافة مستخدم')
+                    <div class="content-header-right col-md-6 col-12">
+                        <div class="btn-group float-md-right" role="group" aria-label="Button group with nested dropdown">
+                            <a href="{{ Route('users.create') }}" class="btn btn-info round  box-shadow-2 px-2 mb-1"><i
+                                    class="ft-plus-circle icon-left"></i> اضافة مستخدم جديد</a>
+                        </div>
                     </div>
-                </div>
+                @endcan
 
             </div>
             <div class="content-body">
@@ -127,12 +128,14 @@
                                                                         <a class="dropdown-item"
                                                                             href="{{ Route('users.show', $item->id) }}">عرض</a>
 
-                                                                        <a class="dropdown-item"
-                                                                            href="{{ Route('users.edit', $item->id) }}">تعديل</a>
-
-
-                                                                        <button class="dropdown-item delete_user_btn"
-                                                                            value="{{ $item->id }}">حذف</button>
+                                                                        @can('تعديل مستخدم')
+                                                                            <a class="dropdown-item"
+                                                                                href="{{ Route('users.edit', $item->id) }}">تعديل</a>
+                                                                        @endcan
+                                                                        @can('حذف مستخدم')
+                                                                            <button class="dropdown-item delete_user_btn"
+                                                                                value="{{ $item->id }}">حذف</button>
+                                                                        @endcan
 
                                                                     </div>
                                                                 </div>

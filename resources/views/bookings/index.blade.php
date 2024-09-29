@@ -30,12 +30,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="content-header-right col-md-6 col-12">
-                    <div class="btn-group float-md-right" role="group" aria-label="Button group with nested dropdown">
-                        <a href="{{ route('bookings.create') }}" class="btn btn-info round  box-shadow-2 px-2 mb-1"><i
-                                class="ft-plus-circle icon-left"></i> اضافة حجز جديد</a>
+                @can('اضافة حجز')
+                    <div class="content-header-right col-md-6 col-12">
+                        <div class="btn-group float-md-right" role="group" aria-label="Button group with nested dropdown">
+                            <a href="{{ route('bookings.create') }}" class="btn btn-info round  box-shadow-2 px-2 mb-1"><i
+                                    class="ft-plus-circle icon-left"></i> اضافة حجز جديد</a>
+                        </div>
                     </div>
-                </div>
+                @endcan
             </div>
             <div class="content-body">
                 <section id="configuration">
@@ -113,19 +115,24 @@
                                                                     <div class="dropdown-menu">
                                                                         <a class="dropdown-item"
                                                                             href="{{ route('bookings.show', $booking->id) }}">عرض</a>
-                                                                        <a class="dropdown-item"
-                                                                            href="{{ route('bookings.edit', $booking->id) }}">تعديل</a>
-                                                                        @if ($booking->status == 0)
+                                                                        @can('تعديل حجز')
                                                                             <a class="dropdown-item"
-                                                                                href="{{ route('bookings.accept', $booking->id) }}">قبول
-                                                                                الحجز</a>
-                                                                            <a class="dropdown-item"
-                                                                                href="{{ route('bookings.reject', $booking->id) }}">رفض
-                                                                                الحجز</a>
-                                                                        @endif
-
-                                                                        <button class="dropdown-item delete_booking_btn"
-                                                                            value="{{ $booking->id }}">حذف</button>
+                                                                                href="{{ route('bookings.edit', $booking->id) }}">تعديل</a>
+                                                                        @endcan
+                                                                        @can('قبول ورفض حجز')
+                                                                            @if ($booking->status == 0)
+                                                                                <a class="dropdown-item"
+                                                                                    href="{{ route('bookings.accept', $booking->id) }}">قبول
+                                                                                    الحجز</a>
+                                                                                <a class="dropdown-item"
+                                                                                    href="{{ route('bookings.reject', $booking->id) }}">رفض
+                                                                                    الحجز</a>
+                                                                            @endif
+                                                                        @endcan
+                                                                        @can('حذف حجز')
+                                                                            <button class="dropdown-item delete_booking_btn"
+                                                                                value="{{ $booking->id }}">حذف</button>
+                                                                        @endcan
                                                                     </div>
                                                                 </div>
                                                             </td>

@@ -30,14 +30,15 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="content-header-right col-md-6 col-12">
-                    <div class="btn-group float-md-right" role="group" aria-label="Button group with nested dropdown">
-                        <a href="{{ route('offices.create') }}" class="btn btn-info round box-shadow-2 px-2 mb-1">
-                            <i class="ft-plus-circle icon-left"></i> إضافة مكتب جديد
-                        </a>
+                @can('اضافة مكتب')
+                    <div class="content-header-right col-md-6 col-12">
+                        <div class="btn-group float-md-right" role="group" aria-label="Button group with nested dropdown">
+                            <a href="{{ route('offices.create') }}" class="btn btn-info round box-shadow-2 px-2 mb-1">
+                                <i class="ft-plus-circle icon-left"></i> إضافة مكتب جديد
+                            </a>
+                        </div>
                     </div>
-                </div>
+                @endcan
             </div>
 
             <div class="content-body">
@@ -104,10 +105,14 @@
                                                                     <div class="dropdown-menu">
                                                                         <a class="dropdown-item"
                                                                             href="{{ route('offices.show', $office->id) }}">عرض</a>
-                                                                        <a class="dropdown-item"
-                                                                            href="{{ route('offices.edit', $office->id) }}">تعديل</a>
-                                                                        <button class="dropdown-item delete_office_btn"
-                                                                            value="{{ $office->id }}">حذف</button>
+                                                                        @can('تعديل مكتب')
+                                                                            <a class="dropdown-item"
+                                                                                href="{{ route('offices.edit', $office->id) }}">تعديل</a>
+                                                                        @endcan
+                                                                        @can('حذف مكتب')
+                                                                            <button class="dropdown-item delete_office_btn"
+                                                                                value="{{ $office->id }}">حذف</button>
+                                                                        @endcan
                                                                     </div>
                                                                 </div>
                                                             </td>

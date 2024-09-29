@@ -30,13 +30,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="content-header-right col-md-6 col-12">
-                    <div class="btn-group float-md-right" role="group" aria-label="Button group with nested dropdown">
-                        <a href="{{ route('payments.create') }}" class="btn btn-info round box-shadow-2 px-2 mb-1">
-                            <i class="ft-plus-circle icon-left"></i> اضافة دفع جديد
-                        </a>
+                @can('اضافة دفع')
+                    <div class="content-header-right col-md-6 col-12">
+                        <div class="btn-group float-md-right" role="group" aria-label="Button group with nested dropdown">
+                            <a href="{{ route('payments.create') }}" class="btn btn-info round box-shadow-2 px-2 mb-1">
+                                <i class="ft-plus-circle icon-left"></i> اضافة دفع جديد
+                            </a>
+                        </div>
                     </div>
-                </div>
+                @endcan
             </div>
             <div class="content-body">
                 <section id="configuration">
@@ -119,10 +121,15 @@
                                                                     <div class="dropdown-menu">
                                                                         <a class="dropdown-item"
                                                                             href="{{ route('payments.show', $payment->id) }}">عرض</a>
-                                                                        <a class="dropdown-item"
-                                                                            href="{{ route('payments.edit', $payment->id) }}">تعديل</a>
-                                                                        <button class="dropdown-item delete_payment_btn"
-                                                                            value="{{ $payment->id }}">حذف</button>
+                                                                        @can('تعديل دفع')
+                                                                            <a class="dropdown-item"
+                                                                                href="{{ route('payments.edit', $payment->id) }}">تعديل</a>
+                                                                        @endcan
+                                                                        @can('حذف دفع')
+                                                                            <button class="dropdown-item delete_payment_btn"
+                                                                                value="{{ $payment->id }}">حذف</button>
+                                                                        @endcan
+
                                                                     </div>
                                                                 </div>
                                                             </td>

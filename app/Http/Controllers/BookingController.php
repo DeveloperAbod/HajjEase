@@ -13,7 +13,13 @@ class BookingController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware(CheckUserStatus::class);
+        $this->middleware(middleware: CheckUserStatus::class);
+
+        $this->middleware('permission:عرض الحجوزات', ['only' => ['index', 'show']]);
+        $this->middleware('permission:اضافة حجز', ['only' => ['create', 'store']]);
+        $this->middleware('permission:تعديل حجز', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:حذف حجز', ['only' => ['destroy']]);
+        $this->middleware('permission:قبول ورفض حجز', ['only' => ['accept', 'reject']]);
     }
 
     // Display a list of all bookings

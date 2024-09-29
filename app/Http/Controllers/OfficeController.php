@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\CheckUserStatus;
 use App\Models\Office;
 use Illuminate\Http\Request;
 
@@ -11,9 +12,14 @@ class OfficeController extends Controller
     {
         // Apply the auth middleware to all actions in this controller
         $this->middleware('auth');
+        $this->middleware(middleware: CheckUserStatus::class);
+
+        $this->middleware('permission:عرض المكاتب', ['only' => ['index', 'show']]);
+        $this->middleware('permission:اضافة مكتب', ['only' => ['create', 'store']]);
+        $this->middleware('permission:تعديل مكتب', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:حذف مكتب', ['only' => ['destroy']]);
     }
 
-    // عرض قائمة بجميع المكاتب
     public function index()
     {
         $offices = Office::with(['creator'])->get();
@@ -21,16 +27,13 @@ class OfficeController extends Controller
         return view('offices.index', compact('offices'));
     }
 
-    // عرض نموذج إنشاء مكتب جديد
     public function create()
     {
         return view('offices.create');
     }
 
-    // تخزين مكتب جديد في قاعدة البيانات
     public function store(Request $request)
     {
-        // تحقق من صحة بيانات الطلب
         $request->validate([
             'name' => 'required|string|max:255',
             'location' => 'required|string|max:255',
@@ -39,7 +42,6 @@ class OfficeController extends Controller
             'contact_person' => 'required|string|max:255',
         ]);
 
-        // إنشاء مكتب جديد
         Office::create([
             'name' => $request->name,
             'location' => $request->location,
@@ -54,19 +56,16 @@ class OfficeController extends Controller
             ->with('msg', 'تم إضافة المكتب بنجاح');
     }
 
-    // عرض تفاصيل مكتب معين
     public function show(Office $office)
     {
         return view('offices.show', compact('office'));
     }
 
-    // عرض نموذج تعديل مكتب معين
     public function edit(Office $office)
     {
         return view('offices.edit', compact('office'));
     }
 
-    // تحديث المكتب المحدد في قاعدة البيانات
     public function update(Request $request, Office $office)
     {
         // تحقق من صحة بيانات الطلب
@@ -78,7 +77,6 @@ class OfficeController extends Controller
             'contact_person' => 'required|string|max:255',
         ]);
 
-        // تحديث المكتب بالبيانات الجديدة
         $office->update([
             'name' => $request->name,
             'location' => $request->location,
@@ -92,10 +90,8 @@ class OfficeController extends Controller
             ->with('msg', 'تم تحديث المكتب بنجاح');
     }
 
-    // حذف المكتب المحدد من قاعدة البيانات
     public function destroy(Office $office)
     {
-        // حذف المكتب
         $office->delete();
         return redirect()->route('offices')
             ->with('icon', 'success')

@@ -41,11 +41,6 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="col-12 col-sm-5 d-flex justify-content-end align-items-center px-1 mb-2">
-                    <a href="{{ Route('roles.edit', $role->id) }}" class="btn btn-sm btn-primary">تعديل
-                        الصلاحية</a>
-                </div>
             </div>
             <div class="content-body">
                 <!-- Hidden label form layout section start -->

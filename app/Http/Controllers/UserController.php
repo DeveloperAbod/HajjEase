@@ -23,10 +23,10 @@ class UserController extends Controller
         //auth middleware
         $this->middleware('auth');
         $this->middleware(CheckUserStatus::class);
-        /*  $this->middleware('permission:عرض المستخدمين', ['only' => ['index', 'show']]);
+        $this->middleware('permission:عرض المستخدمين', ['only' => ['index', 'show']]);
         $this->middleware('permission:اضافة مستخدم', ['only' => ['create', 'store']]);
         $this->middleware('permission:تعديل مستخدم', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:حذف مستخدم', ['only' => ['destroy']]); */
+        $this->middleware('permission:حذف مستخدم', ['only' => ['destroy']]);
     }
 
     public function index(Request $request)

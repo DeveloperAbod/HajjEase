@@ -135,133 +135,132 @@
     </div>
     <!-- END: Content-->
 
+    @can('عرض مدفوعات الحجز')
+        <!-- BEGIN: Content-->
+        <div class="app-content content">
+            <div class="content-overlay"></div>
+            <div class="content-wrapper">
+                <div class="content-header row">
+                    <div class="content-header-left col-md-6 col-12 mb-2">
+                        <h3 class="content-header-title">المدفوعات الخاصة بهذا الحجز</h3>
 
-
-
-
-
-
-
-
-
-
-
-    <!-- BEGIN: Content-->
-    <div class="app-content content">
-        <div class="content-overlay"></div>
-        <div class="content-wrapper">
-            <div class="content-header row">
-                <div class="content-header-left col-md-6 col-12 mb-2">
-                    <h3 class="content-header-title">المدفوعات الخاصة بهذا الحجز</h3>
-
-                </div>
-                <div class="content-header-right col-md-6 col-12">
-                    <div class="btn-group float-md-right" role="group" aria-label="Button group with nested dropdown">
-                        <a href="{{ route('payments.create') }}" class="btn btn-info round box-shadow-2 px-2 mb-1">
-                            <i class="ft-plus-circle icon-left"></i> اضافة دفع جديد
-                        </a>
                     </div>
+
+                    @can('اضافة دفع')
+                        <div class="content-header-right col-md-6 col-12">
+                            <div class="btn-group float-md-right" role="group" aria-label="Button group with nested dropdown">
+                                <a href="{{ route('payments.create') }}" class="btn btn-info round box-shadow-2 px-2 mb-1">
+                                    <i class="ft-plus-circle icon-left"></i> اضافة دفع جديد
+                                </a>
+                            </div>
+                        </div>
+                    @endcan
                 </div>
-            </div>
-            <div class="content-body">
-                <section id="configuration">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title">المدفوعات الخاصة بهذا الحجز</h4>
-                                    <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
-                                    <div class="heading-elements">
-                                        <ul class="list-inline mb-0">
-                                            <li>
-                                                <a data-action="collapse"><i class="ft-minus"></i></a>
-                                            </li>
-                                            <li>
-                                                <a data-action="expand"><i class="ft-maximize"></i></a>
-                                            </li>
-                                        </ul>
+                <div class="content-body">
+                    <section id="configuration">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">المدفوعات الخاصة بهذا الحجز</h4>
+                                        <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+                                        <div class="heading-elements">
+                                            <ul class="list-inline mb-0">
+                                                <li>
+                                                    <a data-action="collapse"><i class="ft-minus"></i></a>
+                                                </li>
+                                                <li>
+                                                    <a data-action="expand"><i class="ft-maximize"></i></a>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="card-content collapse show">
-                                    <div class="card-body card-dashboard">
-                                        <div class="table-responsive">
-                                            <table class="table table-striped table-bordered dataex-visibility-selector">
-                                                <thead>
-                                                    <tr>
-                                                        <th>الرقم</th>
-                                                        <th>رقم الحجز</th>
-                                                        <th>المبلغ المدفوع</th>
-                                                        <th>رقم الإيصال</th>
-                                                        <th>تاريخ الإيصال</th>
-                                                        <th>تم الانشاء بواسطة</th>
-                                                        <th>العمليات</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    @foreach ($booking->payments as $payment)
+                                    <div class="card-content collapse show">
+                                        <div class="card-body card-dashboard">
+                                            <div class="table-responsive">
+                                                <table class="table table-striped table-bordered dataex-visibility-selector">
+                                                    <thead>
                                                         <tr>
-                                                            <td>{{ $payment->id }}</td>
-                                                            <td>{{ $payment->booking->id }}</td>
-                                                            <td>{{ number_format($payment->amount_paid) }}</td>
-                                                            <td>{{ $payment->receipt_number }}</td>
-                                                            <td>{{ $payment->receipt_date }}</td>
-                                                            <td>
-                                                                @if ($payment->creator)
-                                                                    <a
-                                                                        href="{{ route('users.show', $payment->creator->id) }}">
-                                                                        {{ $payment->creator->id }} -
-                                                                        {{ $payment->creator->name }}
-                                                                    </a>
-                                                                @else
-                                                                    غير متوفر
-                                                                @endif
-                                                            </td>
-                                                            <td>
-                                                                <div class="btn-group">
-                                                                    <button type="button"
-                                                                        class="btn btn-sm btn-info dropdown-toggle mr-1"
-                                                                        data-toggle="dropdown" aria-haspopup="true"
-                                                                        aria-expanded="false">
-                                                                        عرض اكثر
-                                                                    </button>
-                                                                    <div class="dropdown-menu">
-                                                                        <a class="dropdown-item"
-                                                                            href="{{ route('payments.show', $payment->id) }}">عرض</a>
-                                                                        <a class="dropdown-item"
-                                                                            href="{{ route('payments.edit', $payment->id) }}">تعديل</a>
-                                                                        <button class="dropdown-item delete_payment_btn"
-                                                                            value="{{ $payment->id }}">حذف</button>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
+                                                            <th>الرقم</th>
+                                                            <th>رقم الحجز</th>
+                                                            <th>المبلغ المدفوع</th>
+                                                            <th>رقم الإيصال</th>
+                                                            <th>تاريخ الإيصال</th>
+                                                            <th>تم الانشاء بواسطة</th>
+                                                            <th>العمليات</th>
                                                         </tr>
-                                                    @endforeach
-                                                </tbody>
-                                                <tfoot>
-                                                    <tr>
-                                                        <th>الرقم</th>
-                                                        <th>رقم الحجز</th>
-                                                        <th>المبلغ المدفوع</th>
-                                                        <th>رقم الإيصال</th>
-                                                        <th>تاريخ الإيصال</th>
-                                                        <th>تم الانشاء بواسطة</th>
-                                                        <th>العمليات</th>
-                                                    </tr>
-                                                </tfoot>
-                                            </table>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach ($booking->payments as $payment)
+                                                            <tr>
+                                                                <td>{{ $payment->id }}</td>
+                                                                <td>{{ $payment->booking->id }}</td>
+                                                                <td>{{ number_format($payment->amount_paid) }}</td>
+                                                                <td>{{ $payment->receipt_number }}</td>
+                                                                <td>{{ $payment->receipt_date }}</td>
+                                                                <td>
+                                                                    @if ($payment->creator)
+                                                                        <a
+                                                                            href="{{ route('users.show', $payment->creator->id) }}">
+                                                                            {{ $payment->creator->id }} -
+                                                                            {{ $payment->creator->name }}
+                                                                        </a>
+                                                                    @else
+                                                                        غير متوفر
+                                                                    @endif
+                                                                </td>
+                                                                <td>
+                                                                    <div class="btn-group">
+                                                                        <button type="button"
+                                                                            class="btn btn-sm btn-info dropdown-toggle mr-1"
+                                                                            data-toggle="dropdown" aria-haspopup="true"
+                                                                            aria-expanded="false">
+                                                                            عرض اكثر
+                                                                        </button>
+                                                                        <div class="dropdown-menu">
+                                                                            <a class="dropdown-item"
+                                                                                href="{{ route('payments.show', $payment->id) }}">عرض</a>
+                                                                            @can('تعديل دفع')
+                                                                                <a class="dropdown-item"
+                                                                                    href="{{ route('payments.edit', $payment->id) }}">تعديل</a>
+                                                                            @endcan
+                                                                            @can('حذف دفع')
+                                                                                <button class="dropdown-item delete_payment_btn"
+                                                                                    value="{{ $payment->id }}">حذف</button>
+                                                                            @endcan
+
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        @endforeach
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th>الرقم</th>
+                                                            <th>رقم الحجز</th>
+                                                            <th>المبلغ المدفوع</th>
+                                                            <th>رقم الإيصال</th>
+                                                            <th>تاريخ الإيصال</th>
+                                                            <th>تم الانشاء بواسطة</th>
+                                                            <th>العمليات</th>
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </section>
-                <!--/ Zero configuration table -->
+                    </section>
+                    <!--/ Zero configuration table -->
 
+                </div>
             </div>
         </div>
-    </div>
-    <!-- END: Content-->
+        <!-- END: Content-->
+    @endcan
 @endsection
 
 @section('page_vendor_js')

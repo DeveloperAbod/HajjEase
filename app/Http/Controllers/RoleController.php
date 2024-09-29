@@ -19,10 +19,10 @@ class RoleController extends Controller
         //auth middleware
         $this->middleware('auth');
         $this->middleware(CheckUserStatus::class);
-        /*     $this->middleware('permission:عرض الصلاحيات', ['only' => ['index', 'show']]);
+        $this->middleware('permission:عرض الصلاحيات', ['only' => ['index', 'show']]);
         $this->middleware('permission:اضافة صلاحية', ['only' => ['create', 'store']]);
         $this->middleware('permission:تعديل صلاحية', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:حذف صلاحية', ['only' => ['destroy']]); */
+        $this->middleware('permission:حذف صلاحية', ['only' => ['destroy']]);
     }
 
 

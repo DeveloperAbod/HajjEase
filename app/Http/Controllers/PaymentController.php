@@ -47,7 +47,7 @@ class PaymentController extends Controller
         // Validate the request
         $request->validate([
             'booking_id' => 'required|exists:bookings,id',
-            'amount_paid' => 'required|numeric|min:0|max:' . $remainingAmount,  // Using max for the remaining amount
+            'amount_paid' => 'required|numeric|min:1|max:' . $remainingAmount,  // Using max for the remaining amount
             'receipt_number' => 'required|numeric|digits_between:1,10|unique:payments,receipt_number',
             'receipt_date' => 'required|date',
         ]);
@@ -102,7 +102,7 @@ class PaymentController extends Controller
 
         // Validate the request
         $request->validate([
-            'amount_paid' => 'required|numeric|min:0|max:' . $remainingAmount,  // Using max for the remaining amount
+            'amount_paid' => 'required|numeric|min:1|max:' . $remainingAmount,  // Using max for the remaining amount
             'receipt_number' => 'required|numeric|digits_between:1,10|unique:payments,receipt_number,' . $payment->id,
             'receipt_date' => 'required|date',
         ]);

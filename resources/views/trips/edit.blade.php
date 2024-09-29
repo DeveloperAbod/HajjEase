@@ -92,7 +92,7 @@
                                                             </h5>
                                                             <div class="controls">
                                                                 <input type="number" name="price"
-                                                                    value="{{ old('price', number_format($trip->price)) }}"
+                                                                    value="{{ old('price', $trip->price) }}"
                                                                     class="form-control mb-1" placeholder="ادخل السعر"
                                                                     required>
                                                                 @error('price')

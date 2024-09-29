@@ -1,66 +1,136 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# التوثيق للوحة تحكم مكاتب الحج والعمرة (لارافيل 11)
+ تم انشاء هذا المشروع المصغر لأكاديمية ويست
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## في هذه المهمة تم انجاز التالي بالترتيب:
+1- قمت بتصميم وترتيب الواجهات مبدأياً.
 
-## About Laravel
+2- قمت بانشاء مشروع لارافيل جديد.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+3- قمت باضافة الmigrations وmodel الخاص ب المستخدمين و الصلاحيات والرحلات والحجاج والمكاتب والحجوزات والمدفوعات.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+4- قمت باستخدام مكتبة Laravel ui لتسهيل عمل انشاء المستخدمين وتسجيل وانشاء حساب.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+4- قمت بالتعديل على التصميم وعرض بيانات المستخدم بشكل مرتب.
 
-## Learning Laravel
+5-قمت باضافة controller لتعديل الملف الشخصي للمستخدم مع الواجهة الخاصة بالمستخدم للتعديل.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+6-قمت باضافة مكتبة spatie-permission لاضافة الصلاحيات وادارتها مع الصفحات.
+ 
+7- قمت باضافة CRUD الخاص ب المستخدمين و الصلاحيات والرحلات والحجاج والمكاتب والحجوزات والمدفوعات.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+8-قمت باضافة الاحصئيات البيانية باستخدام chart.js
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+9- قمت باضافة الصلاحيات لكل صفحة موجودة في الموقع او اي عملية.
 
-## Laravel Sponsors
+10- قمت باضافة الصلاحيات لكل الcontroller لعدم السماح للدخول او التلاعب عن طريق الطلبات requests .
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+11- قمت باضافة middleware لايقاف المستخدم من استخدام النظام في حال ايقافه
 
-### Premium Partners
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
 
-## Contributing
+## متطلبات التشغيل:
+1-ويب سيرفر مثلا xampp
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+2- نسخة php 8.2 او اعلى
 
-## Code of Conduct
+3- تحميلComposer
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+4-تحميل node package management
 
-## Security Vulnerabilities
+## المكتبات المستخدمة:
+1-مكتبة laravel ui لتسهيل الاذونات  auth 
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+يمكنك زيارة الموقع من هنا (https://github.com/laravel/ui)
 
-## License
+2-مكتبة spatie permission لتسهيل اضافة الصلاحيات
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+يمكنك زيارة الموقع من هنا (https://spatie.be/docs/laravel-permission/v6/introduction)
+
+
+## طريقة التشغيل:
+### 1. نسخ المستودع 
+ابحث عن مكان على جهاز الكمبيوتر الخاص بك حيث تريد تخزين المشروع
+
+قم بتشغيل وحدة التحكم bash هناك واستنسخ المشروع.
+
+`git clone https://github.com/DeveloperAbod/programming_education_platform.git`
+
+### 2. انتقل الى مسار المشروع
+يجب أن تكون داخل مسار المشروع الذي تم إنشاؤه للتو، لذا انتقل إليه.
+
+`cd project_name`
+
+### 3.  تنزيل composer dependencies و NPM dependencies
+عندما تقوم باستنساخ مشروع Laravel جديد، يجب عليك الآن تثبيت جميع الحزم المشروع. وهذا ما يؤدي في الواقع إلى تثبيت Laravel نفسه، من بين الحزم الضرورية الأخرى للبدء.
+
+
+
+`composer install`
+
+
+`npm install`
+
+### 5. قم بإنشاء ملف .env
+
+يجب عليك عمل نسخة من ملف .env.example وتسميته .env حتى تتمكن من إعداد الاعدادات الخاص بك, يمكنك النسخ بإستخدام هذا الامر
+
+`cp .env.example .env`
+
+### 6. إنشاء مفتاح تشفير التطبيق app key  (يمكنك تخطي هذا الخطوة لانني عرضت لك ملف .env )
+
+
+يتطلب Laravel منك أن يكون لديك مفتاح تشفير للتطبيق يتم إنشاؤه عشوائيًا وتخزينه في ملف .env الخاص بك. سيستخدم التطبيق مفتاح التشفير هذا لتشفير عناصر مختلفة من تطبيقك من ملفات تعريف الارتباط إلى تجزئات كلمات المرور والمزيد.
+يمكنك انشاء مفتاح باستخدام هذا الامر
+
+`php artisan key:generate`
+
+### 7. قم بانشاء Migrate للجداول 
+بمجرد إضافة بيانات الاعتماد الخاصة بك إلى ملف .env، يمكنك الآن تنفيذ عمليات ترحيل قاعدة البيانات. ستؤدي هذه الخطوة إلى إنشاء جميع الجداول اللازمة في قاعدة بياناتك.
+
+`php artisan migrate`
+
+### 8. قم بانشاء seeder للسجلات (اضافة البيانات الاساسية لقاعدة البيانات) 
+`php artisan db:seed --class=PermissionTableSeeder`
+
+
+`php artisan db:seed --class=CreateAdminUserSeeder`
+
+### 9. قم بتشغيل السيرفر محليا
+`php artisan serve`
+
+
+### 10. قم بالدخول الى لوحة التحكم من الرابط التالي 
+
+`http://127.0.0.1:8000`
+
+الحساب الاساسي (مدير النظام) `admin@admin.com`  كلمة المرور `12345678`
+
+
+
+## كيفية تنفيذ المتطابات الوظيفية والغير الوضيفية
+
+### المتطلبات الوظيفية
+1- ادارة الرحلات : قمت باضافة 4 صفحات الاولى عرض جميع الرحلات مع امكانية البحث باستخدام اي column وامكانية حذف الرحلة والصفحة الثانية لاضافة رحلة والصفحة الثالثة تعديل الرحلة والصفحة الرابعة لعرض تفاصيل الرحلة
+
+2- ادارة الحجوزات : قمت باضافة 4 صفحات الاولى عرض جميع الحجوزات مع امكانية البحث باستخدام اي column وامكانية حذف الحجز والصفحة الثانية لاضافة حجز والصفحة الثالثة تعديل الحجز والصفحة الرابعة لعرض تفاصيل الحجز مع امكانية قبول او رفض الحجز
+
+3- ادارة الحجاج : قمت باضافة 4 صفحات الاولى عرض جميع الحجاج مع امكانية البحث باستخدام اي column وامكانية حذف الحاج والصفحة الثانية لاضافة حاج والصفحة الثالثة لتعديل بيانات الحاج والصفحة الرابعة لعرض تفاصيل الحاج
+
+4- ادارة المدفوهات : قمت باضافة 4 صفحات الاولى عرض جميع المدفوهات مع امكانية البحث باستخدام اي column وامكانية حذف الدفع والصفحة الثانية لاضافة دفع جديد والصفحة الثالثة لتعديل بيانات الدفع والصفحة الرابعة لعرض تفاصيل الدفع
+
+5- ادارة المكاتب : قمت باضافة 4 صفحات الاولى عرض جميع المكاتب مع امكانية البحث باستخدام اي column وامكانية حذف المكتب والصفحة الثانية لاضافة مكتب والصفحة الثالثة لتعديل بيانات المكتب والصفحة الرابعة لعرض تفاصيل المكتب
+
+6- احصائيات وتقارير : قمت باضافة الاحصائيات الكاملة في الصفحة الرئيسية باستخدام chart.js وقمت باضافة امكانية توليد التقارير من تاريخ الى تاريخ  مع امكانية الطباعة لهذا التقرير
+
+
+### المتطلبات غير الوظيفية
+1- الامان : قمت بانشاء نظام تسجيل الدخول بمساعدة مكتبة laravel ui وتحكم كامل بالمستخدمين من ايقاف المستخدم مؤقتا وتعديل بياناته -- قمت بتشفير كلمة المرور الخاصة بالمستخدم
+
+2-الاداء قمت بتقليل بعض الاستعلامات باستخدم  with للعلاقات بحيث انها تقوم باستعلامة واحدة للعلاقات بدلا من كل مرة مما يساعد في تسريع الموقع
+
+3- التجربة قمت بتوحيد جميع الصفحات المتشابهه للتسهيل على المستخدم واستخدام bootstrap وجعل التصميم متجاوب مع جميع الاجهزة
+
+
+## صورة للمشروع
+
+
